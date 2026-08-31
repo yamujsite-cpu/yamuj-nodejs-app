@@ -1,21 +1,18 @@
-import { connect } from "mongoose";
-import dns from "node:dns";
+import mongoose from "mongoose";
 
-try {
-  dns.setServers(["8.8.8.8", "8.8.4.4", "1.1.1.1"]);
-} catch (error) {
-  console.warn("Failed to set custom DNS servers:", error);
-}
+const dbConnect = async () => {
+  try {
+    console.log("MONGO URI EXISTS:", !!process.env.MONGO_URI);
 
-const dbConnect = () => {
-  connect(process.env.MONGO_URL!)
-    .then(() => {
-      console.log("DB Connected");
-    })
-    .catch((err) => {
-      console.error("DB Connection Error:", err);
+    await mongoose.connect(process.env.MONGO_URL!, {
+      serverSelectionTimeoutMS: 5000,
     });
+
+    console.log("MongoDB Connected Successfully");
+  } catch (error) {
+    console.error("MongoDB Connection Error:", error);
+    throw error;
+  }
 };
 
 export default dbConnect;
-
