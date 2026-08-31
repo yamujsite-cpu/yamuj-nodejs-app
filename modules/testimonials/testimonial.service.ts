@@ -1,0 +1,64 @@
+import expressAsyncHandler from "express-async-handler";
+import { uploadMix } from "../../middlewares/uploadImageMiddleware.js";
+import { uploadToCloudinary } from "../../utils/uploadToCloudinary.js";
+import TestimonialModel from "./testimonialModel.js";
+
+export const getTestimonialImages = uploadMix();
+
+export const resizeTestimonialImages = expressAsyncHandler(
+  async (req, res, next) => {
+    const files = req.files as Express.Multer.File[];
+
+    // Parse items
+    const items = JSON.parse(req.body.items || "[]");
+
+    for (let index = 0; index < items.length; index++) {
+      const imageFile = files.find(
+        (file) => file.fieldname === `items[${index}][image]`,
+      );
+
+      if (imageFile) {
+        const uploaded = (await uploadToCloudinary(
+          imageFile.buffer,
+          "services/items",
+        )) as any;
+
+        items[index].image = uploaded.secure_url;
+      } else if (typeof items[index].image === "string") {
+        items[index].image = items[index].image;
+      } else if (typeof items[index].image === "string") {
+        items[index].image = items[index].image;
+      } else {
+        items[index].image = "";
+      }
+    }
+
+    req.body.items = items;
+
+    next();
+  },
+);
+
+export const updateTestimonial = expressAsyncHandler(async (req, res, next) => {
+  const data = await TestimonialModel.findOneAndUpdate({}, req.body, {
+    new: true,
+    upsert: true,
+  });
+
+  res.json({
+    message: "Testimonials updated successfully",
+    data,
+    status: "Success",
+  });
+});
+
+export const getTestimonial = expressAsyncHandler(async (req, res, next) => {
+  const data = await TestimonialModel.findOne();
+
+  res.json({
+    status: "Success",
+    data: {
+      item: data,
+    },
+  });
+});
