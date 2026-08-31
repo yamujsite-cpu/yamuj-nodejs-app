@@ -32,7 +32,7 @@ const sendEmail = async ({ email, subject, code, text, name }: SendEmail) => {
     subject: subject,
     text: bodyText,
     html: `
-      <div>
+      <div dir="rtl">
         <h1 style="color: #333;">${subject}</h1>
         ${name ? `<p style="color: #666; font-size: 16px; font-weight: 600;">أهلاً ${name}</p>` : ""}
         <p style="color: #666; font-size: 16px; font-weight: 600;">
