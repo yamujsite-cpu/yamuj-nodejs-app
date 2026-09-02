@@ -8,14 +8,20 @@ export const getSingleBlogValidator = [
 ] as ValidationChain[];
 
 export const createBlogValidator = [
-  check("title")
+  check("title.en")
     .notEmpty()
-    .withMessage("Title is required")
+    .withMessage("English title is required")
     .custom((val, { req }) => {
       req.body.slug = slugify(val, { lower: true });
       return true;
     }),
-  check("description").notEmpty().withMessage("Description is required"),
+  check("title.ar").notEmpty().withMessage("Arabic title is required"),
+  check("description.en")
+    .notEmpty()
+    .withMessage("English description is required"),
+  check("description.ar")
+    .notEmpty()
+    .withMessage("Arabic description is required"),
   check("video").optional().isString().withMessage("Video must be a string URL"),
   check("showInHome").optional().isBoolean().withMessage("showInHome must be a boolean"),
   validatorMiddleware,
@@ -23,12 +29,17 @@ export const createBlogValidator = [
 
 export const updateBlogValidator = [
   check("id").isMongoId().withMessage("Invalid blog ID"),
-  check("title")
+  check("title.en")
     .optional()
     .custom((val, { req }) => {
-      req.body.slug = slugify(val, { lower: true });
+      if (val) {
+        req.body.slug = slugify(val, { lower: true });
+      }
       return true;
     }),
+  check("title.ar").optional(),
+  check("description.en").optional(),
+  check("description.ar").optional(),
   check("video").optional().isString().withMessage("Video must be a string URL"),
   check("showInHome").optional().isBoolean().withMessage("showInHome must be a boolean"),
   validatorMiddleware,

@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 import expressAsyncHandler from "express-async-handler";
 import { uploadMultipleImage } from "../../middlewares/uploadImageMiddleware.js";
+import { localizeDocument } from "../../utils/handlersFactory.js";
 import { uploadToCloudinary } from "../../utils/uploadToCloudinary.js";
 import Settings from "./settingsModel.js";
 
@@ -57,11 +58,13 @@ export const updateSettings = async (data: any) => {
  */
 export const getSettingsController = async (req: Request, res: Response) => {
   const data = await getSettings();
+
+  const locale = (req.headers["locale"] as string) || "en";
   res.json({
     status: "Success",
     results: 1,
     data: {
-      settings: data,
+      settings: localizeDocument(data, locale, ["footerTitle", "footerDescription", "footerMessage"]),
     },
   });
 };

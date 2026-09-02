@@ -10,8 +10,8 @@ const testimonialItemSchema = new Schema({
 const testimonialSchema = new Schema(
   {
     sortOrder: { type: Number, default: 0 },
-    subtitle: { type: String, default: "" },
-    title: { type: String, default: "" },
+    subtitle: { en: { type: String, default: "" }, ar: { type: String, default: "" } },
+    title: { en: { type: String, default: "" }, ar: { type: String, default: "" } },
     items: [testimonialItemSchema],
   },
   {

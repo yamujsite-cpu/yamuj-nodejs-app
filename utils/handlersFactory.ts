@@ -3,21 +3,53 @@ import { Model } from "mongoose";
 import apiError from "./appError.js";
 import { ERROR, SUCCESS } from "./statusTexts.js";
 
-export const getAllDocuments = (Model: Model<any>, populate?: string | null) =>
+const localizedFields = [
+  "title",
+  "subtitle",
+  "description",
+];
+
+export const localizeDocument = (
+  document: any,
+  locale: string,
+  fields: string[] = ["title", "subtitle", "description"],
+) => {
+  const obj = document.toObject ? document.toObject() : document;
+
+  fields.forEach((field) => {
+    if (obj[field] && typeof obj[field] === "object") {
+      obj[field] = obj[field][locale] ?? obj[field];
+    }
+  });
+
+  return obj;
+};
+
+export const getAllDocuments = (
+  Model: Model<any>,
+  populate?: string | null,
+) =>
   expressAsyncHandler(async (req, res) => {
     const { page = 1, limit = 10 } = req.query;
 
     const pageNumber = parseInt(page as string) || 1;
-
     const limitNumber = parseInt(limit as string) || 10;
 
     const skip = (pageNumber - 1) * limitNumber;
 
-    // Filters
+    // Locale
+    const locale = (req.headers["locale"] as string) || "en";
 
+    // Filters
     const filters = { ...req.query };
 
-    const excludedFields = ["page", "sort", "limit", "fields", "keyword"];
+    const excludedFields = [
+      "page",
+      "sort",
+      "limit",
+      "fields",
+      "keyword",
+    ];
 
     excludedFields.forEach((field) => delete filters[field]);
 
@@ -28,7 +60,7 @@ export const getAllDocuments = (Model: Model<any>, populate?: string | null) =>
       (match) => `$${match}`,
     );
 
-    let mongooseFilters = JSON.parse(queryString);
+    const mongooseFilters = JSON.parse(queryString);
 
     let query = Model.find(mongooseFilters, { __v: false })
       .skip(skip)
@@ -40,18 +72,22 @@ export const getAllDocuments = (Model: Model<any>, populate?: string | null) =>
 
     const documents = await query;
 
-    const countDocuments = await Model.countDocuments();
+    const localizedDocuments = documents.map((document) =>
+      localizeDocument(document, locale),
+    );
+
+    const countDocuments = await Model.countDocuments(mongooseFilters);
 
     res.status(200).json({
       status: SUCCESS,
       message: "Documents retrieved successfully",
       data: {
-        documents,
+        documents: localizedDocuments,
         pagination: {
           currentPage: pageNumber,
           limit: limitNumber,
           totalPages: Math.ceil(countDocuments / limitNumber),
-          results: documents.length,
+          results: localizedDocuments.length,
           total: countDocuments,
         },
       },
@@ -64,6 +100,8 @@ export const getSingleDocument = (
 ) =>
   expressAsyncHandler(async (req, res, next) => {
     const { id } = req.params;
+
+    const locale = (req.headers["locale"] as string) || "en";
 
     let query = Model.findById(id);
 
@@ -79,14 +117,20 @@ export const getSingleDocument = (
         404,
         ERROR,
       );
+
       return next(error);
     }
+
+    const localizedDocument = localizeDocument(
+      document,
+      locale,
+    );
 
     res.status(200).json({
       status: SUCCESS,
       message: "Document retrieved successfully",
       data: {
-        document,
+        document: localizedDocument,
       },
     });
   });

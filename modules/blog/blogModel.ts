@@ -3,17 +3,16 @@ import mongoose from "mongoose";
 const blogSchema = new mongoose.Schema(
   {
     title: {
-      type: String,
-      required: true,
-      trim: true,
+      en: { type: String },
+      ar: { type: String },
     },
     slug: {
       type: String,
       lowercase: true,
     },
     description: {
-      type: String,
-      required: true,
+      en: { type: String },
+      ar: { type: String },
     },
     image: {
       type: String,

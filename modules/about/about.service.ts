@@ -39,13 +39,27 @@ export const updateAbout = expressAsyncHandler(async (req, res, next) => {
   });
 });
 
-export const getAbout = expressAsyncHandler(async (req, res, next) => {
+export const getAbout = expressAsyncHandler(async (req, res) => {
+  const locale = req.headers["locale"] as string;
+
   const data = await AboutModel.findOne();
+
+  if (!data) {
+    res.status(404);
+    throw new Error("About not found");
+  }
+
+  const about = {
+    subtitle: data.subtitle?.[locale as "en" | "ar"] ?? "",
+    title: data.title?.[locale as "en" | "ar"] ?? "",
+    description: data.description?.[locale as "en" | "ar"] ?? "",
+    image: data.image,
+  };
 
   res.json({
     status: "Success",
     data: {
-      item: data,
+      item: about,
     },
   });
 });

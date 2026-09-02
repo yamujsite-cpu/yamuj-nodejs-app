@@ -29,16 +29,16 @@ const settingsSchema = new mongoose.Schema(
       default: "",
     },
     footerTitle: {
-      type: String,
-      default: "",
+      en: { type: String, default: "" },
+      ar: { type: String, default: "" },
     },
     footerDescription: {
-      type: String,
-      default: "",
+      en: { type: String, default: "" },
+      ar: { type: String, default: "" },
     },
     footerMessage: {
-      type: String,
-      default: "",
+      en: { type: String, default: "" },
+      ar: { type: String, default: "" },
     },
   },
   { timestamps: true },

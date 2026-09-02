@@ -1,21 +1,43 @@
 import { check } from "express-validator";
+import slugify from "slugify";
 import validatorMiddleware from "../../middlewares/validatorMiddleware.js";
 
 export const updateServiceValidator = [
-  check("title")
+  check("title.en")
     .optional()
     .isString()
-    .withMessage("Title must be a string")
+    .withMessage("English title must be a string")
+    .trim()
+    .custom((val, { req }) => {
+      if (val) {
+        req.body.slug = slugify(val, { lower: true });
+      }
+      return true;
+    }),
+  check("title.ar")
+    .optional()
+    .isString()
+    .withMessage("Arabic title must be a string")
     .trim(),
-  check("subtitle")
+  check("subtitle.en")
     .optional()
     .isString()
-    .withMessage("Subtitle must be a string")
+    .withMessage("English subtitle must be a string")
     .trim(),
-  check("description")
+  check("subtitle.ar")
     .optional()
     .isString()
-    .withMessage("Description must be a string")
+    .withMessage("Arabic subtitle must be a string")
+    .trim(),
+  check("description.en")
+    .optional()
+    .isString()
+    .withMessage("English description must be a string")
+    .trim(),
+  check("description.ar")
+    .optional()
+    .isString()
+    .withMessage("Arabic description must be a string")
     .trim(),
   check("sortOrder")
     .optional()

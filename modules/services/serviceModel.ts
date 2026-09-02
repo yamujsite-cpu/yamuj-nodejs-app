@@ -10,10 +10,20 @@ const serviceItemSchema = new Schema({
 const serviceSchema = new Schema(
   {
     sortOrder: { type: Number, default: 0 },
-    subtitle: { type: String, default: "" },
-    title: { type: String, default: "" },
-    description: { type: String, default: "" },
+    subtitle: {
+      en: { type: String, default: "" },
+      ar: { type: String, default: "" },
+    },
+    title: {
+      en: { type: String, default: "" },
+      ar: { type: String, default: "" },
+    },
+    description: {
+      en: { type: String, default: "" },
+      ar: { type: String, default: "" },
+    },
     image: { type: String, default: "" },
+    slug: { type: String, lowercase: true },
     items: [serviceItemSchema],
   },
   {

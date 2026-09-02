@@ -1,4 +1,5 @@
 import { check } from "express-validator";
+import slugify from "slugify";
 import validatorMiddleware from "../../middlewares/validatorMiddleware.js";
 
 export const getBrandValidator = [
@@ -7,10 +8,21 @@ export const getBrandValidator = [
 ];
 
 export const updateBrandValidator = [
-  check("title")
+  check("title.en")
     .optional()
     .isString()
-    .withMessage("Title must be a string")
+    .withMessage("English title must be a string")
+    .trim()
+    .custom((val, { req }) => {
+      if (val) {
+        req.body.slug = slugify(val, { lower: true });
+      }
+      return true;
+    }),
+  check("title.ar")
+    .optional()
+    .isString()
+    .withMessage("Arabic title must be a string")
     .trim(),
   check("sortOrder")
     .optional()

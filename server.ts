@@ -25,7 +25,9 @@ const app = express();
 dbConnect();
 
 app.use(express.json());
+
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
+
 app.use(cors());
 
 const __filename = fileURLToPath(import.meta.url);

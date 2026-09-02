@@ -1,5 +1,6 @@
 import expressAsyncHandler from "express-async-handler";
 import { uploadMix } from "../../middlewares/uploadImageMiddleware.js";
+import { getAllDocuments } from "../../utils/handlersFactory.js";
 import { uploadToCloudinary } from "../../utils/uploadToCloudinary.js";
 import ServiceModel from "./serviceModel.js";
 
@@ -52,13 +53,4 @@ export const updateService = expressAsyncHandler(async (req, res, next) => {
   });
 });
 
-export const getService = expressAsyncHandler(async (req, res, next) => {
-  const data = await ServiceModel.findOne();
-
-  res.json({
-    status: "Success",
-    data: {
-      item: data,
-    },
-  });
-});
+export const getServices = getAllDocuments(ServiceModel);

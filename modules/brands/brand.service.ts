@@ -1,5 +1,8 @@
 import expressAsyncHandler from "express-async-handler";
 import { uploadMultipleImage } from "../../middlewares/uploadImageMiddleware.js";
+import apiError from "../../utils/appError.js";
+import { localizeDocument } from "../../utils/handlersFactory.js";
+import { ERROR, SUCCESS } from "../../utils/statusTexts.js";
 import { uploadToCloudinary } from "../../utils/uploadToCloudinary.js";
 import BrandModel from "./brandModel.js";
 
@@ -50,12 +53,20 @@ export const updateBrand = expressAsyncHandler(async (req, res, next) => {
 });
 
 export const getBrand = expressAsyncHandler(async (req, res, next) => {
-  const data = await BrandModel.findOne();
+  const locale = (req.headers["locale"] as string) || "en";
+
+  const data = await BrandModel.findOne({});
+
+  if (!data) {
+    return next(apiError.create("Brand not found", 404, ERROR))
+  }
+
+  const brand = localizeDocument(data, locale, ["title"]);
 
   res.json({
-    status: "Success",
+    status: SUCCESS,
     data: {
-      item: data,
+      item: brand,
     },
   });
 });
