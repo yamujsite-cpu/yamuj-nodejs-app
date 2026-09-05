@@ -33,6 +33,11 @@ const projectSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
+projectSchema.pre(/^find/, function (this: mongoose.Query<any, any>, next) {
+  this.populate("category", "name");
+});
+
+
 const ProjectModel = mongoose.model("Project", projectSchema);
 
 export default ProjectModel;

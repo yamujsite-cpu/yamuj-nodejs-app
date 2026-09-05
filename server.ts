@@ -8,6 +8,7 @@ import dbConnect from "./config/dbConnect.js";
 import aboutRoute from "./modules/about/about.route.js";
 import blogRoute from "./modules/blog/blog.route.js";
 import brandsRoute from "./modules/brands/brand.route.js";
+import categoryRoute from "./modules/categories/category.route.js";
 import contactMessagesRoute from "./modules/contact-messages/contactMessages.route.js";
 import homeRoute from "./modules/home/home.route.js";
 import projectRoute from "./modules/projects/project.route.js";
@@ -52,6 +53,7 @@ app.use("/api/settings", settingsRoute);
 app.use("/api/projects", projectRoute);
 app.use("/api/blog", blogRoute);
 app.use("/api/home", homeRoute);
+app.use("/api/categories", categoryRoute);
 
 app.use((req, res) => {
   return res.status(404).json({
