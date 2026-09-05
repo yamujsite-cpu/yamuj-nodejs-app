@@ -10,9 +10,9 @@ export const getSingleCategoryValidator = [
 export const createCategoryValidator = [
   check("name.en")
     .notEmpty()
-    .withMessage("English category name is required")
+    .withMessage("اسم الفئة باللغة الإنجليزية مطلوب")
     .isLength({ min: 2 })
-    .withMessage("English category name must be at least 2 characters long")
+    .withMessage("اسم الفئة باللغة الإنجليزية يجب أن يكون حرفين على الأقل")
     .custom((val, { req }) => {
       req.body.slug = slugify(val, { lower: true });
       return true;
@@ -27,11 +27,24 @@ export const createCategoryValidator = [
 
 export const updateCategoryValidator = [
   check("id").isMongoId().withMessage("Invalid category ID"),
-  check("name")
-    .notEmpty()
-    .withMessage("Category name is required")
+  check("name.en")
+    .optional()
+    .isString()
+    .withMessage("اسم الفئة باللغة الإنجليزية مطلوب")
     .isLength({ min: 2 })
-    .withMessage("Category name must be at least 2 characters long"),
+    .withMessage("اسم الفئة باللغة الإنجليزية يجب أن يكون حرفين على الأقل")
+    .custom((val, { req }) => {
+      if (val) {
+        req.body.slug = slugify(val, { lower: true });
+      }
+      return true;
+    }),
+  check("name.ar")
+    .optional()
+    .isString()
+    .withMessage("Arabic category name must be a string")
+    .isLength({ min: 2 })
+    .withMessage("Arabic category name must be at least 2 characters long"),
   validatorMiddleware,
 ];
 
