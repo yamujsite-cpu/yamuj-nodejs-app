@@ -25,6 +25,10 @@ const projectSchema = new mongoose.Schema(
     video: {
       type: String,
     },
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+    },
     showInHome: {
       type: Boolean,
       default: false,

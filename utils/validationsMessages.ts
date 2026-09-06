@@ -10,6 +10,14 @@ export const validationMessages = {
       "Arabic category name is required",
     "category.nameArMin":
       "Arabic category name must be at least 2 characters long",
+
+    "project.invalidId": "Invalid project ID",
+    "project.titleEnRequired": "English title is required",
+    "project.titleArRequired": "Arabic title is required",
+    "project.descEnRequired": "English description is required",
+    "project.descArRequired": "Arabic description is required",
+    "project.videoInvalid": "Video must be a string URL",
+    "project.showInHomeInvalid": "showInHome must be a boolean",
   },
   ar: {
     "category.invalidId": "معرف التصنيف غير صحيح",
@@ -25,5 +33,13 @@ export const validationMessages = {
 
     "category.nameArMin":
       "يجب أن يكون اسم التصنيف باللغة العربية حرفين على الأقل",
+
+    "project.invalidId": "معرف المشروع غير صحيح",
+    "project.titleEnRequired": "عنوان المشروع باللغة الإنجليزية مطلوب",
+    "project.titleArRequired": "عنوان المشروع باللغة العربية مطلوب",
+    "project.descEnRequired": "وصف المشروع باللغة الإنجليزية مطلوب",
+    "project.descArRequired": "وصف المشروع باللغة العربية مطلوب",
+    "project.videoInvalid": "رابط الفيديو يجب أن يكون نصاً",
+    "project.showInHomeInvalid": "خاصية العرض في الصفحة الرئيسية يجب أن تكون قيمة منطقية",
   },
 };

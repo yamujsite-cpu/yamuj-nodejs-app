@@ -3,31 +3,33 @@ import slugify from "slugify";
 import validatorMiddleware from "../../middlewares/validatorMiddleware.js";
 
 export const getSingleProjectValidator = [
-  check("id").isMongoId().withMessage("Invalid project ID"),
-];
+  check("id").isMongoId().withMessage("project.invalidId"),
+  validatorMiddleware,
+] as ValidationChain[];
 
 export const createProjectValidator = [
   check("title.en")
     .notEmpty()
-    .withMessage("English title is required")
+    .withMessage("project.titleEnRequired")
     .custom((val, { req }) => {
       req.body.slug = slugify(val, { lower: true });
       return true;
     }),
-  check("title.ar").notEmpty().withMessage("Arabic title is required"),
+  check("title.ar").notEmpty().withMessage("project.titleArRequired"),
   check("description.en")
     .notEmpty()
-    .withMessage("English description is required"),
+    .withMessage("project.descEnRequired"),
   check("description.ar")
     .notEmpty()
-    .withMessage("Arabic description is required"),
-  check("video").optional().isString().withMessage("Video must be a string URL"),
-  check("showInHome").optional().isBoolean().withMessage("showInHome must be a boolean"),
+    .withMessage("project.descArRequired"),
+  check("video").optional().isString().withMessage("project.videoInvalid"),
+  check("category").optional().isMongoId().withMessage("category.invalidId"),
+  check("showInHome").optional().isBoolean().withMessage("project.showInHomeInvalid"),
   validatorMiddleware,
 ] as ValidationChain[];
 
 export const updateProjectValidator = [
-  check("id").isMongoId().withMessage("Invalid project ID"),
+  check("id").isMongoId().withMessage("project.invalidId"),
   check("title.en")
     .optional()
     .custom((val, { req }) => {
@@ -39,12 +41,13 @@ export const updateProjectValidator = [
   check("title.ar").optional(),
   check("description.en").optional(),
   check("description.ar").optional(),
-  check("video").optional().isString().withMessage("Video must be a string URL"),
-  check("showInHome").optional().isBoolean().withMessage("showInHome must be a boolean"),
+  check("video").optional().isString().withMessage("project.videoInvalid"),
+  check("category").optional().isMongoId().withMessage("category.invalidId"),
+  check("showInHome").optional().isBoolean().withMessage("project.showInHomeInvalid"),
   validatorMiddleware,
 ] as ValidationChain[];
 
 export const deleteProjectValidator = [
-  check("id").isMongoId().withMessage("Invalid project ID"),
+  check("id").isMongoId().withMessage("project.invalidId"),
   validatorMiddleware,
 ] as ValidationChain[];
