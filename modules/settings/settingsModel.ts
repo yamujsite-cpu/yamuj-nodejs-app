@@ -32,10 +32,6 @@ const settingsSchema = new mongoose.Schema(
       en: { type: String, default: "" },
       ar: { type: String, default: "" },
     },
-    footerDescription: {
-      en: { type: String, default: "" },
-      ar: { type: String, default: "" },
-    },
     footerMessage: {
       en: { type: String, default: "" },
       ar: { type: String, default: "" },

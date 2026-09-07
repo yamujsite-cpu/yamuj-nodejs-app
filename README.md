@@ -23,14 +23,14 @@ A modern, high-performance RESTful API built with **Node.js**, **TypeScript**, *
   - JWT authentication & role-based request guards
 - **Dynamic Content & Portfolio Modules:**
   - **Projects:** Create, update, list, and categorize showcase projects
-  - **Services:** Manage offered services and descriptions
+  - **Services:** Manage offered services, localized multi-language titles & rich-text descriptions (`en`, `ar`), and nested service items
   - **Blog:** Manage articles and publishing status
   - **Brands:** Manage client and partner logos
   - **Testimonials:** Manage client feedback and reviews
   - **Statistics:** Manage company counter metrics and achievements
   - **About:** Dynamic section for company details
   - **Home:** Main landing page content configuration
-  - **Settings:** General platform configuration settings
+  - **Settings:** General platform configuration settings (branding, social links, footer configuration)
 - **Contact Message Workflow:**
   - Submit contact inquiries
   - Admin email reply capabilities via Nodemailer (RTL styled templates)
