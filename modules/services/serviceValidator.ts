@@ -6,7 +6,7 @@ export const updateServiceValidator = [
   check("title.en")
     .optional()
     .isString()
-    .withMessage("English title must be a string")
+    .withMessage("service.titleEnInvalid")
     .trim()
     .custom((val, { req }) => {
       if (val) {
@@ -17,57 +17,47 @@ export const updateServiceValidator = [
   check("title.ar")
     .optional()
     .isString()
-    .withMessage("Arabic title must be a string")
-    .trim(),
-  check("subtitle.en")
-    .optional()
-    .isString()
-    .withMessage("English subtitle must be a string")
-    .trim(),
-  check("subtitle.ar")
-    .optional()
-    .isString()
-    .withMessage("Arabic subtitle must be a string")
+    .withMessage("service.titleArInvalid")
     .trim(),
   check("description.en")
     .optional()
     .isString()
-    .withMessage("English description must be a string")
+    .withMessage("service.descEnInvalid")
     .trim(),
   check("description.ar")
     .optional()
     .isString()
-    .withMessage("Arabic description must be a string")
+    .withMessage("service.descArInvalid")
     .trim(),
   check("sortOrder")
     .optional()
     .isNumeric()
-    .withMessage("Sort order must be a number"),
-  check("image")
+    .withMessage("service.sortOrderInvalid"),
+  check("items").optional().isArray().withMessage("service.itemsInvalid"),
+  check("items.*.title.en")
     .optional()
     .isString()
-    .withMessage("Service image must be a string")
+    .withMessage("service.itemTitleEnInvalid")
     .trim(),
-  check("items").optional().isArray().withMessage("Items must be an array"),
-  check("items.*.title")
+  check("items.*.title.ar")
     .optional()
     .isString()
-    .withMessage("Item title must be a string")
+    .withMessage("service.itemTitleArInvalid")
     .trim(),
-  check("items.*.subtitle")
+  check("items.*.description.en")
     .optional()
     .isString()
-    .withMessage("Item subtitle must be a string")
+    .withMessage("service.itemDescEnInvalid")
     .trim(),
-  check("items.*.description")
+  check("items.*.description.ar")
     .optional()
     .isString()
-    .withMessage("Item description must be a string")
+    .withMessage("service.itemDescArInvalid")
     .trim(),
   check("items.*.image")
     .optional()
     .isString()
-    .withMessage("Item image must be a string")
+    .withMessage("service.itemImageInvalid")
     .trim(),
   validatorMiddleware,
 ];

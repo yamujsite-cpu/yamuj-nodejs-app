@@ -15,10 +15,11 @@ const settingsSchema = new mongoose.Schema(
         type: String,
         default: "",
       },
-      behance: {
+      twitter: {
         type: String,
         default: "",
       },
+
     },
     logo: {
       type: String,
@@ -36,6 +37,11 @@ const settingsSchema = new mongoose.Schema(
       en: { type: String, default: "" },
       ar: { type: String, default: "" },
     },
+    whatsapp: {
+      type: String,
+      default: "",
+    },
+    
   },
   { timestamps: true },
 );

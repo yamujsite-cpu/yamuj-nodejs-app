@@ -3,32 +3,32 @@ import slugify from "slugify";
 import validatorMiddleware from "../../middlewares/validatorMiddleware.js";
 
 export const getSingleBlogValidator = [
-  check("id").isMongoId().withMessage("Invalid blog ID"),
+  check("id").isMongoId().withMessage("blog.invalidId"),
   validatorMiddleware,
 ] as ValidationChain[];
 
 export const createBlogValidator = [
   check("title.en")
     .notEmpty()
-    .withMessage("English title is required")
+    .withMessage("blog.titleEnRequired")
     .custom((val, { req }) => {
       req.body.slug = slugify(val, { lower: true });
       return true;
     }),
-  check("title.ar").notEmpty().withMessage("Arabic title is required"),
+  check("title.ar").notEmpty().withMessage("blog.titleArRequired"),
   check("description.en")
     .notEmpty()
-    .withMessage("English description is required"),
+    .withMessage("blog.descEnRequired"),
   check("description.ar")
     .notEmpty()
-    .withMessage("Arabic description is required"),
-  check("video").optional().isString().withMessage("Video must be a string URL"),
-  check("showInHome").optional().isBoolean().withMessage("showInHome must be a boolean"),
+    .withMessage("blog.descArRequired"),
+  check("video").optional().isString().withMessage("blog.videoInvalid"),
+  check("showInHome").optional().isBoolean().withMessage("blog.showInHomeInvalid"),
   validatorMiddleware,
 ] as ValidationChain[];
 
 export const updateBlogValidator = [
-  check("id").isMongoId().withMessage("Invalid blog ID"),
+  check("id").isMongoId().withMessage("blog.invalidId"),
   check("title.en")
     .optional()
     .custom((val, { req }) => {
@@ -40,12 +40,12 @@ export const updateBlogValidator = [
   check("title.ar").optional(),
   check("description.en").optional(),
   check("description.ar").optional(),
-  check("video").optional().isString().withMessage("Video must be a string URL"),
-  check("showInHome").optional().isBoolean().withMessage("showInHome must be a boolean"),
+  check("video").optional().isString().withMessage("blog.videoInvalid"),
+  check("showInHome").optional().isBoolean().withMessage("blog.showInHomeInvalid"),
   validatorMiddleware,
 ] as ValidationChain[];
 
 export const deleteBlogValidator = [
-  check("id").isMongoId().withMessage("Invalid blog ID"),
+  check("id").isMongoId().withMessage("blog.invalidId"),
   validatorMiddleware,
 ] as ValidationChain[];

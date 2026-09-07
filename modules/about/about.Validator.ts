@@ -2,31 +2,43 @@ import { check } from "express-validator";
 import validatorMiddleware from "../../middlewares/validatorMiddleware.js";
 
 export const updateAboutValidator = [
-  check("title")
-    .notEmpty()
-    .withMessage("Title is required")
-    .isString()
-    .withMessage("Title must be a string")
-    .trim(),
-  check("subtitle")
+  check("title.en")
     .optional()
     .isString()
-    .withMessage("Subtitle must be a string")
+    .withMessage("about.titleEnInvalid")
     .trim(),
-  check("description")
-    .notEmpty()
-    .withMessage("Description is required")
+  check("title.ar")
+    .optional()
     .isString()
-    .withMessage("Description must be a string")
+    .withMessage("about.titleArInvalid")
+    .trim(),
+  check("subtitle.en")
+    .optional()
+    .isString()
+    .withMessage("about.subtitleEnInvalid")
+    .trim(),
+  check("subtitle.ar")
+    .optional()
+    .isString()
+    .withMessage("about.subtitleArInvalid")
+    .trim(),
+  check("description.en")
+    .optional()
+    .isString()
+    .withMessage("about.descEnInvalid")
+    .trim(),
+  check("description.ar")
+    .optional()
+    .isString()
+    .withMessage("about.descArInvalid")
     .trim(),
   check("sortOrder")
     .optional()
     .isNumeric()
-    .withMessage("Sort order must be a number"),
+    .withMessage("about.sortOrderInvalid"),
   check("image")
-    .notEmpty()
-    .withMessage("Image is required")
+    .optional()
     .isString()
-    .withMessage("Image must be a string"),
+    .withMessage("about.imageInvalid"),
   validatorMiddleware,
 ];

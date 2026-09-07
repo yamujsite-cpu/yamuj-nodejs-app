@@ -34,6 +34,9 @@ A modern, high-performance RESTful API built with **Node.js**, **TypeScript**, *
 - **Contact Message Workflow:**
   - Submit contact inquiries
   - Admin email reply capabilities via Nodemailer (RTL styled templates)
+- **🌍 Multilingual Validation & Error Response Handling:**
+  - `express-validator` error responses dynamically mapped to English or Arabic based on request `locale` header.
+  - Centralized localized validation dictionary (`utils/validationsMessages.ts`) covering all 10 domain modules.
 - **Media Pipeline:**
   - Image optimization with Sharp & direct uploads to Cloudinary
 

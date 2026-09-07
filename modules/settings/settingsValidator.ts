@@ -7,26 +7,45 @@ export const updateSettingsValidator = [
   check("socialLinks.facebook")
     .optional()
     .isURL()
-    .withMessage("Facebook must be a valid URL"),
+    .withMessage("settings.facebookInvalidUrl"),
 
   check("socialLinks.instagram")
     .optional()
     .isURL()
-    .withMessage("Instagram must be a valid URL"),
+    .withMessage("settings.instagramInvalidUrl"),
 
   check("socialLinks.linkedIn")
     .optional()
     .isURL()
-    .withMessage("LinkedIn must be a valid URL"),
+    .withMessage("settings.linkedInInvalidUrl"),
 
-  check("socialLinks.behance")
+  check("socialLinks.twitter")
     .optional()
     .isURL()
-    .withMessage("Behance must be a valid URL"),
+    .withMessage("settings.twitterInvalidUrl"),
 
-  check("footerTitle").optional().isString(),
-  check("footerDescription").optional().isString(),
-  check("footerMessage").optional().isString(),
+  check("whatsapp")
+    .optional()
+    .isString()
+    .withMessage("settings.whatsappInvalid"),
+
+  check("footerTitle.en")
+    .optional()
+    .isString()
+    .withMessage("settings.footerTitleEnInvalid"),
+  check("footerTitle.ar")
+    .optional()
+    .isString()
+    .withMessage("settings.footerTitleArInvalid"),
+
+  check("footerMessage.en")
+    .optional()
+    .isString()
+    .withMessage("settings.footerMessageEnInvalid"),
+  check("footerMessage.ar")
+    .optional()
+    .isString()
+    .withMessage("settings.footerMessageArInvalid"),
 
   validatorMiddleware,
 ];

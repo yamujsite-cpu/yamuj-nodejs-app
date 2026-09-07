@@ -1,16 +1,13 @@
-
 export const validationMessages = {
   en: {
+    // Category
     "category.invalidId": "Invalid category ID",
-    "category.nameEnRequired":
-      "English category name is required",
-    "category.nameEnMin":
-      "English category name must be at least 2 characters long",
-    "category.nameArRequired":
-      "Arabic category name is required",
-    "category.nameArMin":
-      "Arabic category name must be at least 2 characters long",
+    "category.nameEnRequired": "English category name is required",
+    "category.nameEnMin": "English category name must be at least 2 characters long",
+    "category.nameArRequired": "Arabic category name is required",
+    "category.nameArMin": "Arabic category name must be at least 2 characters long",
 
+    // Project
     "project.invalidId": "Invalid project ID",
     "project.titleEnRequired": "English title is required",
     "project.titleArRequired": "Arabic title is required",
@@ -18,22 +15,96 @@ export const validationMessages = {
     "project.descArRequired": "Arabic description is required",
     "project.videoInvalid": "Video must be a string URL",
     "project.showInHomeInvalid": "showInHome must be a boolean",
+
+    // Blog
+    "blog.invalidId": "Invalid blog ID",
+    "blog.titleEnRequired": "English title is required",
+    "blog.titleArRequired": "Arabic title is required",
+    "blog.descEnRequired": "English description is required",
+    "blog.descArRequired": "Arabic description is required",
+    "blog.videoInvalid": "Video link must be a string URL",
+    "blog.showInHomeInvalid": "Show in home must be a boolean value",
+
+    // About
+    "about.titleEnRequired": "English title is required",
+    "about.titleArRequired": "Arabic title is required",
+    "about.descEnRequired": "English description is required",
+    "about.descArRequired": "Arabic description is required",
+    "about.titleEnInvalid": "English title must be a string",
+    "about.titleArInvalid": "Arabic title must be a string",
+    "about.subtitleEnInvalid": "English subtitle must be a string",
+    "about.subtitleArInvalid": "Arabic subtitle must be a string",
+    "about.descEnInvalid": "English description must be a string",
+    "about.descArInvalid": "Arabic description must be a string",
+    "about.sortOrderInvalid": "Sort order must be a number",
+    "about.imageInvalid": "Image must be a string URL",
+
+    // Brand
+    "brand.invalidId": "Invalid brand ID",
+    "brand.titleEnInvalid": "English title must be a string",
+    "brand.titleArInvalid": "Arabic title must be a string",
+    "brand.descEnInvalid": "English description must be a string",
+    "brand.descArInvalid": "Arabic description must be a string",
+    "brand.sortOrderInvalid": "Sort order must be a number",
+    "brand.logosInvalid": "Logos must be an array of image strings",
+    "brand.logoItemInvalid": "Each logo must be a string URL",
+
+    // Contact Message
+    "contactMessage.invalidId": "Invalid contact message ID format",
+    "contactMessage.nameRequired": "Name is required",
+    "contactMessage.emailRequired": "Email is required",
+    "contactMessage.emailInvalid": "Invalid email format",
+    "contactMessage.subjectRequired": "Subject is required",
+    "contactMessage.messageRequired": "Message is required",
+
+    // Services
+    "service.invalidId": "Invalid service ID",
+    "service.titleEnInvalid": "English title must be a string",
+    "service.titleArInvalid": "Arabic title must be a string",
+    "service.descEnInvalid": "English description must be a string",
+    "service.descArInvalid": "Arabic description must be a string",
+    "service.sortOrderInvalid": "Sort order must be a number",
+    "service.itemsInvalid": "Service items must be an array",
+    "service.itemTitleEnInvalid": "Item English title must be a string",
+    "service.itemTitleArInvalid": "Item Arabic title must be a string",
+    "service.itemDescEnInvalid": "Item English description must be a string",
+    "service.itemDescArInvalid": "Item Arabic description must be a string",
+    "service.itemImageInvalid": "Item image must be a string URL",
+
+    // Settings
+    "settings.facebookInvalidUrl": "Facebook link must be a valid URL",
+    "settings.instagramInvalidUrl": "Instagram link must be a valid URL",
+    "settings.linkedInInvalidUrl": "LinkedIn link must be a valid URL",
+    "settings.twitterInvalidUrl": "Twitter link must be a valid URL",
+    "settings.whatsappInvalid": "WhatsApp link/number must be a string",
+    "settings.footerTitleEnInvalid": "English footer title must be a string",
+    "settings.footerTitleArInvalid": "Arabic footer title must be a string",
+    "settings.footerMessageEnInvalid": "English footer message must be a string",
+    "settings.footerMessageArInvalid": "Arabic footer message must be a string",
+
+    // Testimonial
+    "testimonial.titleEnInvalid": "English title must be a string",
+    "testimonial.titleArInvalid": "Arabic title must be a string",
+    "testimonial.descEnInvalid": "English description must be a string",
+    "testimonial.descArInvalid": "Arabic description must be a string",
+    "testimonial.sortOrderInvalid": "Sort order must be a number",
+    "testimonial.itemsRequired": "Testimonial items are required",
+    "testimonial.itemsInvalid": "Items must be an array with at least one testimonial",
+    "testimonial.itemNameEnInvalid": "Item English name must be a string",
+    "testimonial.itemNameArInvalid": "Item Arabic name must be a string",
+    "testimonial.itemMessageEnInvalid": "Item English message must be a string",
+    "testimonial.itemMessageArInvalid": "Item Arabic message must be a string",
+    "testimonial.itemImageInvalid": "Item image must be a string URL",
   },
   ar: {
+    // Category
     "category.invalidId": "معرف التصنيف غير صحيح",
+    "category.nameEnRequired": "اسم التصنيف باللغة الإنجليزية مطلوب",
+    "category.nameEnMin": "يجب أن يكون اسم التصنيف باللغة الإنجليزية حرفين على الأقل",
+    "category.nameArRequired": "اسم التصنيف باللغة العربية مطلوب",
+    "category.nameArMin": "يجب أن يكون اسم التصنيف باللغة العربية حرفين على الأقل",
 
-    "category.nameEnRequired":
-      "اسم التصنيف باللغة الإنجليزية مطلوب",
-
-    "category.nameEnMin":
-      "يجب أن يكون اسم التصنيف باللغة الإنجليزية حرفين على الأقل",
-
-    "category.nameArRequired":
-      "اسم التصنيف باللغة العربية مطلوب",
-
-    "category.nameArMin":
-      "يجب أن يكون اسم التصنيف باللغة العربية حرفين على الأقل",
-
+    // Project
     "project.invalidId": "معرف المشروع غير صحيح",
     "project.titleEnRequired": "عنوان المشروع باللغة الإنجليزية مطلوب",
     "project.titleArRequired": "عنوان المشروع باللغة العربية مطلوب",
@@ -41,5 +112,85 @@ export const validationMessages = {
     "project.descArRequired": "وصف المشروع باللغة العربية مطلوب",
     "project.videoInvalid": "رابط الفيديو يجب أن يكون نصاً",
     "project.showInHomeInvalid": "خاصية العرض في الصفحة الرئيسية يجب أن تكون قيمة منطقية",
+
+    // Blog
+    "blog.invalidId": "معرف المقال غير صحيح",
+    "blog.titleEnRequired": "عنوان المقال باللغة الإنجليزية مطلوب",
+    "blog.titleArRequired": "عنوان المقال باللغة العربية مطلوب",
+    "blog.descEnRequired": "وصف المقال باللغة الإنجليزية مطلوب",
+    "blog.descArRequired": "وصف المقال باللغة العربية مطلوب",
+    "blog.videoInvalid": "رابط الفيديو يجب أن يكون نصاً",
+    "blog.showInHomeInvalid": "خاصية العرض في الصفحة الرئيسية يجب أن تكون قيمة منطقية",
+
+    // About
+    "about.titleEnRequired": "العنوان باللغة الإنجليزية مطلوب",
+    "about.titleArRequired": "العنوان باللغة العربية مطلوب",
+    "about.descEnRequired": "الوصف باللغة الإنجليزية مطلوب",
+    "about.descArRequired": "الوصف باللغة العربية مطلوب",
+    "about.titleEnInvalid": "العنوان باللغة الإنجليزية يجب أن يكون نصاً",
+    "about.titleArInvalid": "العنوان باللغة العربية يجب أن يكون نصاً",
+    "about.subtitleEnInvalid": "العنوان الفرعي باللغة الإنجليزية يجب أن يكون نصاً",
+    "about.subtitleArInvalid": "العنوان الفرعي باللغة العربية يجب أن يكون نصاً",
+    "about.descEnInvalid": "الوصف باللغة الإنجليزية يجب أن يكون نصاً",
+    "about.descArInvalid": "الوصف باللغة العربية يجب أن يكون نصاً",
+    "about.sortOrderInvalid": "ترتيب العرض يجب أن يكون رقماً",
+    "about.imageInvalid": "الصورة يجب أن تكون نصاً",
+
+    // Brand
+    "brand.invalidId": "معرف العلامة التجارية غير صحيح",
+    "brand.titleEnInvalid": "العنوان باللغة الإنجليزية يجب أن يكون نصاً",
+    "brand.titleArInvalid": "العنوان باللغة العربية يجب أن يكون نصاً",
+    "brand.descEnInvalid": "الوصف باللغة الإنجليزية يجب أن يكون نصاً",
+    "brand.descArInvalid": "الوصف باللغة العربية يجب أن يكون نصاً",
+    "brand.sortOrderInvalid": "ترتيب العرض يجب أن يكون رقماً",
+    "brand.logosInvalid": "الشعارات يجب أن تكون قائمة",
+    "brand.logoItemInvalid": "كل شعار يجب أن يكون نصاً",
+
+    // Contact Message
+    "contactMessage.invalidId": "معرف الرسالة غير صحيح",
+    "contactMessage.nameRequired": "الاسم مطلوب",
+    "contactMessage.emailRequired": "البريد الإلكتروني مطلوب",
+    "contactMessage.emailInvalid": "صيغة البريد الإلكتروني غير صحيحة",
+    "contactMessage.subjectRequired": "موضوع الرسالة مطلوب",
+    "contactMessage.messageRequired": "نص الرسالة مطلوب",
+
+    // Services
+    "service.invalidId": "معرف الخدمة غير صحيح",
+    "service.titleEnInvalid": "عنوان الخدمة باللغة الإنجليزية يجب أن يكون نصاً",
+    "service.titleArInvalid": "عنوان الخدمة باللغة العربية يجب أن يكون نصاً",
+    "service.descEnInvalid": "وصف الخدمة باللغة الإنجليزية يجب أن يكون نصاً",
+    "service.descArInvalid": "وصف الخدمة باللغة العربية يجب أن يكون نصاً",
+    "service.sortOrderInvalid": "ترتيب العرض يجب أن يكون رقماً",
+    "service.itemsInvalid": "عناصر الخدمة يجب أن تكون قائمة",
+    "service.itemTitleEnInvalid": "عنوان العنصر باللغة الإنجليزية يجب أن يكون نصاً",
+    "service.itemTitleArInvalid": "عنوان العنصر باللغة العربية يجب أن يكون نصاً",
+    "service.itemDescEnInvalid": "وصف العنصر باللغة الإنجليزية يجب أن يكون نصاً",
+    "service.itemDescArInvalid": "وصف العنصر باللغة العربية يجب أن يكون نصاً",
+    "service.itemImageInvalid": "صورة العنصر يجب أن تكون نصاً",
+
+    // Settings
+    "settings.facebookInvalidUrl": "رابط فيسبوك يجب أن يكون رابطاً صحيحاً",
+    "settings.instagramInvalidUrl": "رابط إنستغرام يجب أن يكون رابطاً صحيحاً",
+    "settings.linkedInInvalidUrl": "رابط لينكد إن يجب أن يكون رابطاً صحيحاً",
+    "settings.twitterInvalidUrl": "رابط تويتر يجب أن يكون رابطاً صحيحاً",
+    "settings.whatsappInvalid": "رابط أو رقم واتساب يجب أن يكون نصاً",
+    "settings.footerTitleEnInvalid": "عنوان التذييل باللغة الإنجليزية يجب أن يكون نصاً",
+    "settings.footerTitleArInvalid": "عنوان التذييل باللغة العربية يجب أن يكون نصاً",
+    "settings.footerMessageEnInvalid": "رسالة التذييل باللغة الإنجليزية يجب أن تكون نصاً",
+    "settings.footerMessageArInvalid": "رسالة التذييل باللغة العربية يجب أن تكون نصاً",
+
+    // Testimonial
+    "testimonial.titleEnInvalid": "عنوان آراء العملاء باللغة الإنجليزية يجب أن يكون نصاً",
+    "testimonial.titleArInvalid": "عنوان آراء العملاء باللغة العربية يجب أن يكون نصاً",
+    "testimonial.descEnInvalid": "وصف آراء العملاء باللغة الإنجليزية يجب أن يكون نصاً",
+    "testimonial.descArInvalid": "وصف آراء العملاء باللغة العربية يجب أن يكون نصاً",
+    "testimonial.sortOrderInvalid": "ترتيب العرض يجب أن يكون رقماً",
+    "testimonial.itemsRequired": "عناصر آراء العملاء مطلوبة",
+    "testimonial.itemsInvalid": "يجب أن تكون العناصر قائمة تحتوي على رأي عميل واحد على الأقل",
+    "testimonial.itemNameEnInvalid": "اسم صاحب الرأي باللغة الإنجليزية يجب أن يكون نصاً",
+    "testimonial.itemNameArInvalid": "اسم صاحب الرأي باللغة العربية يجب أن يكون نصاً",
+    "testimonial.itemMessageEnInvalid": "نص الرأي باللغة الإنجليزية يجب أن يكون نصاً",
+    "testimonial.itemMessageArInvalid": "نص الرأي باللغة العربية يجب أن يكون نصاً",
+    "testimonial.itemImageInvalid": "صورة صاحب الرأي يجب أن تكون نصاً",
   },
 };

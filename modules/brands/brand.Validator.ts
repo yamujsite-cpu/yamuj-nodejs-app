@@ -3,7 +3,7 @@ import slugify from "slugify";
 import validatorMiddleware from "../../middlewares/validatorMiddleware.js";
 
 export const getBrandValidator = [
-  check("id").optional().isInt().withMessage("Invalid ID"),
+  check("id").optional().isMongoId().withMessage("brand.invalidId"),
   validatorMiddleware,
 ];
 
@@ -11,7 +11,7 @@ export const updateBrandValidator = [
   check("title.en")
     .optional()
     .isString()
-    .withMessage("English title must be a string")
+    .withMessage("brand.titleEnInvalid")
     .trim()
     .custom((val, { req }) => {
       if (val) {
@@ -22,13 +22,23 @@ export const updateBrandValidator = [
   check("title.ar")
     .optional()
     .isString()
-    .withMessage("Arabic title must be a string")
+    .withMessage("brand.titleArInvalid")
+    .trim(),
+  check("description.en")
+    .optional()
+    .isString()
+    .withMessage("brand.descEnInvalid")
+    .trim(),
+  check("description.ar")
+    .optional()
+    .isString()
+    .withMessage("brand.descArInvalid")
     .trim(),
   check("sortOrder")
     .optional()
     .isNumeric()
-    .withMessage("Sort order must be a number"),
-  check("logos").optional().isArray().withMessage("Logos must be an array"),
-  check("logos.*").optional().isString().withMessage("Logo must be a string"),
+    .withMessage("brand.sortOrderInvalid"),
+  check("logos").optional().isArray().withMessage("brand.logosInvalid"),
+  check("logos.*").optional().isString().withMessage("brand.logoItemInvalid"),
   validatorMiddleware,
 ];
