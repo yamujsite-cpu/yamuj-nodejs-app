@@ -23,7 +23,6 @@ const serviceSchema = new Schema(
       en: { type: String, default: "" },
       ar: { type: String, default: "" },
     },
-    image: { type: String, default: "" },
     slug: { type: String, lowercase: true },
     items: [serviceItemSchema],
   },
