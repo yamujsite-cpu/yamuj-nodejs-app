@@ -1,10 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
 const serviceItemSchema = new Schema({
-  subtitle: {
-    en: { type: String, default: "" },
-    ar: { type: String, default: "" },
-  },
   title: {
     en: { type: String, default: "" },
     ar: { type: String, default: "" },
