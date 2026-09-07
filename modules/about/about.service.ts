@@ -45,9 +45,18 @@ export const getAbout = expressAsyncHandler(async (req, res) => {
   const data = await AboutModel.findOne();
 
   const about = {
-    subtitle: data?.subtitle?.[locale as "en" | "ar"] ?? "",
-    title: data?.title?.[locale as "en" | "ar"] ?? "",
-    description: data?.description?.[locale as "en" | "ar"] ?? "",
+    subtitle: {
+      en: data?.subtitle?.en ?? "",
+      ar: data?.subtitle?.ar ?? "",
+    },
+    title: {
+      en: data?.title?.en ?? "",
+      ar: data?.title?.ar ?? "",
+    },
+    description: {
+      en: data?.description?.en ?? "",
+      ar: data?.description?.ar ?? "",
+    },
     image: data?.image,
   };
 

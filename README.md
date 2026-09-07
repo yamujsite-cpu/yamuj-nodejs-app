@@ -28,7 +28,7 @@ A modern, high-performance RESTful API built with **Node.js**, **TypeScript**, *
   - **Brands:** Manage client and partner logos
   - **Testimonials:** Manage client feedback and reviews
   - **Statistics:** Manage company counter metrics and achievements
-  - **About:** Dynamic section for company details
+  - **About:** Dynamic section for company details with localized multi-language title, subtitle, and description fields (`en`, `ar`)
   - **Home:** Main landing page content configuration
   - **Settings:** General platform configuration settings (branding, social links, footer configuration)
 - **Contact Message Workflow:**
