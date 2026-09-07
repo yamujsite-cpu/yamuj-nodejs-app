@@ -38,7 +38,7 @@ export const getAllDocuments = (
     const skip = (pageNumber - 1) * limitNumber;
 
     // Locale
-    const locale = (req.headers["locale"] as string) || "en";
+    const locale = (req.headers["locale"] as string);
 
     // Filters
     const filters = { ...req.query };
@@ -101,7 +101,7 @@ export const getSingleDocument = (
   expressAsyncHandler(async (req, res, next) => {
     const { id } = req.params;
 
-    const locale = (req.headers["locale"] as string) || "en";
+    const locale = (req.headers["locale"] as string);
 
     let query = Model.findById(id);
 
