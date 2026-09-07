@@ -6,6 +6,8 @@ export const validationMessages = {
     "category.nameEnMin": "English category name must be at least 2 characters long",
     "category.nameArRequired": "Arabic category name is required",
     "category.nameArMin": "Arabic category name must be at least 2 characters long",
+    "category.notFound": "Category not found",
+    "category.cannotDeleteWithProjects": "Cannot delete category because it is linked to one or more projects",
 
     // Project
     "project.invalidId": "Invalid project ID",
@@ -103,6 +105,8 @@ export const validationMessages = {
     "category.nameEnMin": "يجب أن يكون اسم التصنيف باللغة الإنجليزية حرفين على الأقل",
     "category.nameArRequired": "اسم التصنيف باللغة العربية مطلوب",
     "category.nameArMin": "يجب أن يكون اسم التصنيف باللغة العربية حرفين على الأقل",
+    "category.notFound": "التصنيف غير موجود",
+    "category.cannotDeleteWithProjects": "لا يمكن حذف هذا التصنيف لأنه مرتبط بمشروع أو أكثر",
 
     // Project
     "project.invalidId": "معرف المشروع غير صحيح",

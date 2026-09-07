@@ -2,6 +2,8 @@ import { check } from "express-validator";
 import slugify from "slugify";
 
 import validatorMiddleware from "../../middlewares/validatorMiddleware.js";
+import ProjectModel from "../projects/projectModel.js";
+import CategoryModel from "./categoryModel.js";
 
 export const getSingleCategoryValidator = [
   check("id")
@@ -55,7 +57,20 @@ export const updateCategoryValidator = [
 export const deleteCategoryValidator = [
   check("id")
     .isMongoId()
-    .withMessage("category.invalidId"),
+    .withMessage("category.invalidId")
+    .custom(async (val) => {
+      const category = await CategoryModel.findById(val);
+      if (!category) {
+        throw new Error("category.notFound");
+      }
+
+      const projectsCount = await ProjectModel.countDocuments({ category: val });
+      if (projectsCount > 0) {
+        throw new Error("category.cannotDeleteWithProjects");
+      }
+
+      return true;
+    }),
 
   validatorMiddleware,
 ];
