@@ -22,12 +22,12 @@ const settingsSchema = new mongoose.Schema(
 
     },
     logo: {
-      type: String,
-      default: "",
+      en: { type: String, default: "" },
+      ar: { type: String, default: "" },
     },
     footerLogo: {
-      type: String,
-      default: "",
+      en: { type: String, default: "" },
+      ar: { type: String, default: "" },
     },
     footerTitle: {
       en: { type: String, default: "" },
@@ -41,7 +41,7 @@ const settingsSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
-    
+
   },
   { timestamps: true },
 );

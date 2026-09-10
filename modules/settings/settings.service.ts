@@ -7,11 +7,19 @@ import Settings from "./settingsModel.js";
 
 export const UpdateSettingsImages = uploadMultipleImage([
   {
-    name: "logo",
+    name: "logo.en",
     maxCount: 1,
   },
   {
-    name: "footerLogo",
+    name: "logo.ar",
+    maxCount: 1,
+  },
+  {
+    name: "footerLogo.en",
+    maxCount: 1,
+  },
+  {
+    name: "footerLogo.ar",
     maxCount: 1,
   },
 ]);
@@ -20,20 +28,36 @@ export const resizeSettingsImages = expressAsyncHandler(
   async (req, res, next) => {
     const files = req.files as any;
 
-    if (files?.logo?.[0]?.buffer) {
+    if (files?.logo?.en?.[0]?.buffer) {
       const result: any = await uploadToCloudinary(
-        files.logo[0].buffer,
+        files.logo.en[0].buffer,
         "settings/logo",
       );
-      req.body.logo = result.secure_url;
+      req.body.logo.en = result.secure_url;
     }
 
-    if (files?.footerLogo?.[0]?.buffer) {
+    if (files?.logo?.ar?.[0]?.buffer) {
       const result: any = await uploadToCloudinary(
-        files.footerLogo[0].buffer,
+        files.logo.ar[0].buffer,
+        "settings/logo",
+      );
+      req.body.logo.ar = result.secure_url;
+    }
+
+    if (files?.footerLogo?.en?.[0]?.buffer) {
+      const result: any = await uploadToCloudinary(
+        files.footerLogo.en[0].buffer,
         "settings/footerLogo",
       );
-      req.body.footerLogo = result.secure_url;
+      req.body.footerLogo.en = result.secure_url;
+    }
+
+    if (files?.footerLogo?.ar?.[0]?.buffer) {
+      const result: any = await uploadToCloudinary(
+        files.footerLogo.ar[0].buffer,
+        "settings/footerLogo",
+      );
+      req.body.footerLogo.ar = result.secure_url;
     }
 
     next();

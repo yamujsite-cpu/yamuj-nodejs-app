@@ -45,7 +45,6 @@ app.use("/api/users", userRoute);
 app.use("/api/about", aboutRoute);
 app.use("/api/brands", brandsRoute);
 app.use("/api/contact-messages", contactMessagesRoute);
-app.use("/api/contact", contactMessagesRoute);
 app.use("/api/testimonials", testimonialRoute);
 app.use("/api/statistics", statisticsRoute);
 app.use("/api/services", serviceRoute);
