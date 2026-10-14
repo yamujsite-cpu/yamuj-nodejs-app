@@ -6,6 +6,10 @@ const categorySchema = new mongoose.Schema(
       en: { type: String, default: "" },
       ar: { type: String, default: "" },
     },
+    description: {
+      en: { type: String, default: "" },
+      ar: { type: String, default: "" },
+    },
     slug: { type: String, lowercase: true },
   },
   {

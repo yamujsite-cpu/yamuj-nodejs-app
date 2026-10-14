@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { allowedTo, protectRoutes } from "../users/user.service.js";
 import {
-  getServices,
   getServiceImages,
+  getServices,
   resizeServiceImages,
   updateService,
 } from "./service.service.js";
