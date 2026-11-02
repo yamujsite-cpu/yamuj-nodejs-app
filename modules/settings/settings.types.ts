@@ -3,13 +3,20 @@ export interface SocialLinks {
   instagram?: string;
   linkedIn?: string;
   behance?: string;
+  twitter?: string;
+}
+
+export interface LocalizedString {
+  en?: string;
+  ar?: string;
 }
 
 export interface UpdateSettingsDTO {
   socialLinks?: SocialLinks;
-  footerTitle?: string;
-  footerDescription?: string;
-  footerMessage?: string;
-  logo?: string;
-  footerLogo?: string;
+  footerTitle?: LocalizedString | string;
+  footerDescription?: LocalizedString | string;
+  footerMessage?: LocalizedString | string;
+  logo?: LocalizedString | string;
+  footerLogo?: LocalizedString | string;
+  whatsapp?: string;
 }

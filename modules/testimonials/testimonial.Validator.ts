@@ -28,6 +28,16 @@ export const updateTestimonialValidator = [
     .withMessage("testimonial.sortOrderInvalid"),
   check("items")
     .optional()
+    .customSanitizer((val) => {
+      if (typeof val === "string") {
+        try {
+          return JSON.parse(val);
+        } catch {
+          return val;
+        }
+      }
+      return val;
+    })
     .isArray()
     .withMessage("testimonial.itemsInvalid"),
   check("items.*.name.en")
@@ -51,8 +61,8 @@ export const updateTestimonialValidator = [
     .withMessage("testimonial.itemMessageArInvalid")
     .trim(),
   check("items.*.image")
-    .optional()
-    .isString()
+    .optional({ values: "falsy" })
+    .isURL()
     .withMessage("testimonial.itemImageInvalid")
     .trim(),
   validatorMiddleware,

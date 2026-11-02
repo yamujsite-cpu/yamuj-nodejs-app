@@ -1,11 +1,6 @@
 import { Router } from "express";
 import { allowedTo, protectRoutes } from "../users/user.service.js";
-import {
-  getServiceImages,
-  getServices,
-  resizeServiceImages,
-  updateService,
-} from "./service.service.js";
+import { getServices, updateService } from "./service.service.js";
 import { updateServiceValidator } from "./serviceValidator.js";
 
 const router = Router();
@@ -15,9 +10,7 @@ router.use(protectRoutes, allowedTo("admin"));
 router
   .route("/")
   .get(getServices)
-  .put( 
-    getServiceImages,
-    resizeServiceImages,
+  .put(
     updateServiceValidator,
     updateService,
   );

@@ -37,8 +37,8 @@ export const updateAboutValidator = [
     .isNumeric()
     .withMessage("about.sortOrderInvalid"),
   check("image")
-    .optional()
-    .isString()
+    .optional({ values: "falsy" })
+    .isURL()
     .withMessage("about.imageInvalid"),
   validatorMiddleware,
 ];

@@ -1,5 +1,3 @@
-import expressAsyncHandler from "express-async-handler";
-import { uploadSingleImage } from "../../middlewares/uploadImageMiddleware.js";
 import {
   createDocument,
   deleteDocument,
@@ -7,23 +5,7 @@ import {
   getSingleDocument,
   updateDocument,
 } from "../../utils/handlersFactory.js";
-import { uploadToCloudinary } from "../../utils/uploadToCloudinary.js";
 import BlogModel from "./blogModel.js";
-
-export const uploadBlogImage = uploadSingleImage("image");
-
-export const resizeBlogImage = expressAsyncHandler(
-  async (req, res, next) => {
-    if (req.file?.buffer) {
-      const result: any = await uploadToCloudinary(
-        req.file.buffer,
-        "blogs",
-      );
-      req.body.image = result.secure_url;
-    }
-    next();
-  },
-);
 
 /**
  * @desc Get All Blogs

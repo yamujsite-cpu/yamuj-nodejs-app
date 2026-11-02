@@ -5,9 +5,7 @@ import {
   deleteProject,
   getAllProjects,
   getSingleProject,
-  resizeProjectImage,
   updateProject,
-  uploadProjectImages,
 } from "./project.service.js";
 import {
   createProjectValidator,
@@ -24,8 +22,6 @@ router
   .post(
     protectRoutes,
     allowedTo("admin"),
-    uploadProjectImages,
-    resizeProjectImage,
     createProjectValidator,
     createProject,
   );
@@ -36,8 +32,6 @@ router
   .put(
     protectRoutes,
     allowedTo("admin"),
-    uploadProjectImages,
-    resizeProjectImage,
     updateProjectValidator,
     updateProject,
   )
@@ -49,4 +43,3 @@ router
   );
 
 export default router;
-

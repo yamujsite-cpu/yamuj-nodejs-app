@@ -33,7 +33,20 @@ export const updateServiceValidator = [
     .optional()
     .isNumeric()
     .withMessage("service.sortOrderInvalid"),
-  check("items").optional().isArray().withMessage("service.itemsInvalid"),
+  check("items")
+    .optional()
+    .customSanitizer((val) => {
+      if (typeof val === "string") {
+        try {
+          return JSON.parse(val);
+        } catch {
+          return val;
+        }
+      }
+      return val;
+    })
+    .isArray()
+    .withMessage("service.itemsInvalid"),
   check("items.*.title.en")
     .optional()
     .isString()
@@ -55,8 +68,8 @@ export const updateServiceValidator = [
     .withMessage("service.itemDescArInvalid")
     .trim(),
   check("items.*.image")
-    .optional()
-    .isString()
+    .optional({ values: "falsy" })
+    .isURL()
     .withMessage("service.itemImageInvalid")
     .trim(),
   validatorMiddleware,

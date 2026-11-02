@@ -14,6 +14,10 @@ const projectSchema = new mongoose.Schema(
       en: { type: String, required: true },
       ar: { type: String, required: true },
     },
+    clientName: {
+      type: String,
+      trim: true,
+    },
     images: [
       {
         type: String,

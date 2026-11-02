@@ -16,6 +16,7 @@ import serviceRoute from "./modules/services/service.route.js";
 import settingsRoute from "./modules/settings/settings.route.js";
 import statisticsRoute from "./modules/statistics/statistics.route.js";
 import testimonialRoute from "./modules/testimonials/testimonial.route.js";
+import uploadRoute from "./modules/upload/upload.route.js";
 import userRoute from "./modules/users/user.route.js";
 import { ERROR } from "./utils/statusTexts.js";
 
@@ -53,6 +54,7 @@ app.use("/api/projects", projectRoute);
 app.use("/api/blog", blogRoute);
 app.use("/api/home", homeRoute);
 app.use("/api/categories", categoryRoute);
+app.use("/api/upload", uploadRoute);
 
 app.use((req, res) => {
   return res.status(404).json({

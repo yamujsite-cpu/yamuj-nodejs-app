@@ -17,6 +17,10 @@ export const validationMessages = {
     "project.descArRequired": "Arabic description is required",
     "project.videoInvalid": "Video must be a string URL",
     "project.showInHomeInvalid": "showInHome must be a boolean",
+    "project.imageCoverInvalid": "Cover image must be a string URL",
+    "project.imagesInvalid": "Images must be an array of string URLs",
+    "project.imagesItemInvalid": "Each image must be a string URL",
+    "project.clientNameInvalid": "Client name must be a string",
 
     // Blog
     "blog.invalidId": "Invalid blog ID",
@@ -26,6 +30,7 @@ export const validationMessages = {
     "blog.descArRequired": "Arabic description is required",
     "blog.videoInvalid": "Video link must be a string URL",
     "blog.showInHomeInvalid": "Show in home must be a boolean value",
+    "blog.imageInvalid": "Image must be a string URL",
 
     // About
     "about.titleEnRequired": "English title is required",
@@ -83,6 +88,10 @@ export const validationMessages = {
     "settings.footerTitleArInvalid": "Arabic footer title must be a string",
     "settings.footerMessageEnInvalid": "English footer message must be a string",
     "settings.footerMessageArInvalid": "Arabic footer message must be a string",
+    "settings.logoEnInvalid": "English logo must be a string URL",
+    "settings.logoArInvalid": "Arabic logo must be a string URL",
+    "settings.footerLogoEnInvalid": "English footer logo must be a string URL",
+    "settings.footerLogoArInvalid": "Arabic footer logo must be a string URL",
 
     // Testimonial
     "testimonial.titleEnInvalid": "English title must be a string",
@@ -116,6 +125,10 @@ export const validationMessages = {
     "project.descArRequired": "وصف المشروع باللغة العربية مطلوب",
     "project.videoInvalid": "رابط الفيديو يجب أن يكون نصاً",
     "project.showInHomeInvalid": "خاصية العرض في الصفحة الرئيسية يجب أن تكون قيمة منطقية",
+    "project.imageCoverInvalid": "صورة الغلاف يجب أن تكون رابطاً صحيحاً",
+    "project.imagesInvalid": "الصور يجب أن تكون قائمة روابط",
+    "project.imagesItemInvalid": "كل صورة يجب أن تكون رابطاً صحيحاً",
+    "project.clientNameInvalid": "اسم العميل يجب أن يكون نصاً",
 
     // Blog
     "blog.invalidId": "معرف المقال غير صحيح",
@@ -125,6 +138,7 @@ export const validationMessages = {
     "blog.descArRequired": "وصف المقال باللغة العربية مطلوب",
     "blog.videoInvalid": "رابط الفيديو يجب أن يكون نصاً",
     "blog.showInHomeInvalid": "خاصية العرض في الصفحة الرئيسية يجب أن تكون قيمة منطقية",
+    "blog.imageInvalid": "الصورة يجب أن تكون رابطاً صحيحاً",
 
     // About
     "about.titleEnRequired": "العنوان باللغة الإنجليزية مطلوب",
@@ -182,6 +196,10 @@ export const validationMessages = {
     "settings.footerTitleArInvalid": "عنوان التذييل باللغة العربية يجب أن يكون نصاً",
     "settings.footerMessageEnInvalid": "رسالة التذييل باللغة الإنجليزية يجب أن تكون نصاً",
     "settings.footerMessageArInvalid": "رسالة التذييل باللغة العربية يجب أن تكون نصاً",
+    "settings.logoEnInvalid": "شعار الموقع باللغة الإنجليزية يجب أن يكون رابطاً صحيحاً",
+    "settings.logoArInvalid": "شعار الموقع باللغة العربية يجب أن يكون رابطاً صحيحاً",
+    "settings.footerLogoEnInvalid": "شعار التذييل باللغة الإنجليزية يجب أن يكون رابطاً صحيحاً",
+    "settings.footerLogoArInvalid": "شعار التذييل باللغة العربية يجب أن يكون رابطاً صحيحاً",
 
     // Testimonial
     "testimonial.titleEnInvalid": "عنوان آراء العملاء باللغة الإنجليزية يجب أن يكون نصاً",

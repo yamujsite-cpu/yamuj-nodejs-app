@@ -8,6 +8,9 @@ export const getBrandValidator = [
 
 export const updateBrandValidator = [
   check("logos").optional().isArray().withMessage("brand.logosInvalid"),
-  check("logos.*").optional().isString().withMessage("brand.logoItemInvalid"),
+  check("logos.*")
+    .optional({ values: "falsy" })
+    .isURL()
+    .withMessage("brand.logoItemInvalid"),
   validatorMiddleware,
 ];

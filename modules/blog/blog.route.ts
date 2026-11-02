@@ -5,9 +5,7 @@ import {
   deleteBlog,
   getAllBlogs,
   getSingleBlog,
-  resizeBlogImage,
   updateBlog,
-  uploadBlogImage,
 } from "./blog.service.js";
 import {
   createBlogValidator,
@@ -24,8 +22,6 @@ router
   .post(
     protectRoutes,
     allowedTo("admin"),
-    uploadBlogImage,
-    resizeBlogImage,
     createBlogValidator,
     createBlog,
   );
@@ -36,8 +32,6 @@ router
   .put(
     protectRoutes,
     allowedTo("admin"),
-    uploadBlogImage,
-    resizeBlogImage,
     updateBlogValidator,
     updateBlog,
   )

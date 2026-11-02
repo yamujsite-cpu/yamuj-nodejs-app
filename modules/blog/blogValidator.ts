@@ -22,6 +22,10 @@ export const createBlogValidator = [
   check("description.ar")
     .notEmpty()
     .withMessage("blog.descArRequired"),
+  check("image")
+    .optional({ values: "falsy" })
+    .isURL()
+    .withMessage("blog.imageInvalid"),
   check("video").optional().isString().withMessage("blog.videoInvalid"),
   check("showInHome").optional().isBoolean().withMessage("blog.showInHomeInvalid"),
   validatorMiddleware,
@@ -40,6 +44,10 @@ export const updateBlogValidator = [
   check("title.ar").optional(),
   check("description.en").optional(),
   check("description.ar").optional(),
+  check("image")
+    .optional({ values: "falsy" })
+    .isURL()
+    .withMessage("blog.imageInvalid"),
   check("video").optional().isString().withMessage("blog.videoInvalid"),
   check("showInHome").optional().isBoolean().withMessage("blog.showInHomeInvalid"),
   validatorMiddleware,

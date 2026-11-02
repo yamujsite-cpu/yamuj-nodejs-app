@@ -29,6 +29,26 @@ export const updateSettingsValidator = [
     .isString()
     .withMessage("settings.whatsappInvalid"),
 
+  check("logo.en")
+    .optional({ values: "falsy" })
+    .isURL()
+    .withMessage("settings.logoEnInvalid"),
+
+  check("logo.ar")
+    .optional({ values: "falsy" })
+    .isURL()
+    .withMessage("settings.logoArInvalid"),
+
+  check("footerLogo.en")
+    .optional({ values: "falsy" })
+    .isURL()
+    .withMessage("settings.footerLogoEnInvalid"),
+
+  check("footerLogo.ar")
+    .optional({ values: "falsy" })
+    .isURL()
+    .withMessage("settings.footerLogoArInvalid"),
+
   check("footerTitle.en")
     .optional()
     .isString()

@@ -1,7 +1,11 @@
+import type { UploadApiResponse } from "cloudinary";
 import streamifier from "streamifier";
 import cloudinary from "../config/cloudinaryConfig.js";
 
-export const uploadToCloudinary = (buffer: Buffer, folder = "projects") => {
+export const uploadToCloudinary = (
+  buffer: Buffer,
+  folder = "uploads",
+): Promise<UploadApiResponse> => {
   return new Promise((resolve, reject) => {
     const stream = cloudinary.uploader.upload_stream(
       {
@@ -15,10 +19,24 @@ export const uploadToCloudinary = (buffer: Buffer, folder = "projects") => {
       },
       (error, result) => {
         if (error) return reject(error);
+        if (!result) return reject(new Error("Cloudinary upload failed: no result"));
         resolve(result);
       },
     );
 
     streamifier.createReadStream(buffer).pipe(stream);
   });
+};
+
+export const deleteFromCloudinary = async (publicId: string) => {
+  return await cloudinary.uploader.destroy(publicId);
+};
+
+export const getPublicIdFromUrl = (url: string): string | null => {
+  try {
+    const matches = url.match(/\/upload\/(?:v\d+\/)?(.+)\.[a-zA-Z0-9]+$/);
+    return matches ? matches[1] : null;
+  } catch {
+    return null;
+  }
 };
