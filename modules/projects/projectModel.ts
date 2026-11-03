@@ -14,18 +14,6 @@ const projectSchema = new mongoose.Schema(
       en: { type: String, required: true },
       ar: { type: String, required: true },
     },
-    clientName: {
-      type: String,
-      trim: true,
-    },
-    images: [
-      {
-        type: String,
-      },
-    ],
-    imageCover: {
-      type: String,
-    },
     video: {
       type: String,
     },
@@ -44,7 +32,6 @@ const projectSchema = new mongoose.Schema(
 projectSchema.pre(/^find/, function (this: mongoose.Query<any, any>, next) {
   this.populate("category", "name");
 });
-
 
 const ProjectModel = mongoose.model("Project", projectSchema);
 

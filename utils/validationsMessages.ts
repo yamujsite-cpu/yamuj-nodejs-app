@@ -20,7 +20,6 @@ export const validationMessages = {
     "project.imageCoverInvalid": "Cover image must be a string URL",
     "project.imagesInvalid": "Images must be an array of string URLs",
     "project.imagesItemInvalid": "Each image must be a string URL",
-    "project.clientNameInvalid": "Client name must be a string",
 
     // Blog
     "blog.invalidId": "Invalid blog ID",
@@ -128,7 +127,6 @@ export const validationMessages = {
     "project.imageCoverInvalid": "صورة الغلاف يجب أن تكون رابطاً صحيحاً",
     "project.imagesInvalid": "الصور يجب أن تكون قائمة روابط",
     "project.imagesItemInvalid": "كل صورة يجب أن تكون رابطاً صحيحاً",
-    "project.clientNameInvalid": "اسم العميل يجب أن يكون نصاً",
 
     // Blog
     "blog.invalidId": "معرف المقال غير صحيح",

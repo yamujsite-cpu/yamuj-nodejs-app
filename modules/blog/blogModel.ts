@@ -12,6 +12,18 @@ const blogSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    title: {
+      en: { type: String, required: true, trim: true },
+      ar: { type: String, required: true, trim: true },
+    },
+    slug: {
+      type: String,
+      lowercase: true,
+    },
+    description: {
+      en: { type: String, required: true },
+      ar: { type: String, required: true },
+    },
   },
   { timestamps: true },
 );

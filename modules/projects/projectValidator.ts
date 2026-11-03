@@ -16,32 +16,14 @@ export const createProjectValidator = [
       return true;
     }),
   check("title.ar").notEmpty().withMessage("project.titleArRequired"),
-  check("description.en")
-    .notEmpty()
-    .withMessage("project.descEnRequired"),
-  check("description.ar")
-    .notEmpty()
-    .withMessage("project.descArRequired"),
-  check("clientName")
-    .optional()
-    .isString()
-    .withMessage("project.clientNameInvalid")
-    .trim(),
-  check("imageCover")
-    .optional({ values: "falsy" })
-    .isURL()
-    .withMessage("project.imageCoverInvalid"),
-  check("images")
-    .optional()
-    .isArray()
-    .withMessage("project.imagesInvalid"),
-  check("images.*")
-    .optional({ values: "falsy" })
-    .isURL()
-    .withMessage("project.imagesItemInvalid"),
+  check("description.en").notEmpty().withMessage("project.descEnRequired"),
+  check("description.ar").notEmpty().withMessage("project.descArRequired"),
   check("video").optional().isString().withMessage("project.videoInvalid"),
   check("category").optional().isMongoId().withMessage("category.invalidId"),
-  check("showInHome").optional().isBoolean().withMessage("project.showInHomeInvalid"),
+  check("showInHome")
+    .optional()
+    .isBoolean()
+    .withMessage("project.showInHomeInvalid"),
   validatorMiddleware,
 ] as ValidationChain[];
 
@@ -58,26 +40,12 @@ export const updateProjectValidator = [
   check("title.ar").optional(),
   check("description.en").optional(),
   check("description.ar").optional(),
-  check("clientName")
-    .optional()
-    .isString()
-    .withMessage("project.clientNameInvalid")
-    .trim(),
-  check("imageCover")
-    .optional({ values: "falsy" })
-    .isURL()
-    .withMessage("project.imageCoverInvalid"),
-  check("images")
-    .optional()
-    .isArray()
-    .withMessage("project.imagesInvalid"),
-  check("images.*")
-    .optional({ values: "falsy" })
-    .isURL()
-    .withMessage("project.imagesItemInvalid"),
   check("video").optional().isString().withMessage("project.videoInvalid"),
   check("category").optional().isMongoId().withMessage("category.invalidId"),
-  check("showInHome").optional().isBoolean().withMessage("project.showInHomeInvalid"),
+  check("showInHome")
+    .optional()
+    .isBoolean()
+    .withMessage("project.showInHomeInvalid"),
   validatorMiddleware,
 ] as ValidationChain[];
 
