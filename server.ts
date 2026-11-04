@@ -11,6 +11,7 @@ import brandsRoute from "./modules/brands/brand.route.js";
 import categoryRoute from "./modules/categories/category.route.js";
 import contactMessagesRoute from "./modules/contact-messages/contactMessages.route.js";
 import homeRoute from "./modules/home/home.route.js";
+import mediaRoute from "./modules/media/media.route.js";
 import projectRoute from "./modules/projects/project.route.js";
 import serviceRoute from "./modules/services/service.route.js";
 import settingsRoute from "./modules/settings/settings.route.js";
@@ -54,6 +55,7 @@ app.use("/api/projects", projectRoute);
 app.use("/api/blog", blogRoute);
 app.use("/api/home", homeRoute);
 app.use("/api/categories", categoryRoute);
+app.use("/api/media", mediaRoute);
 app.use("/api/upload", uploadRoute);
 
 app.use((req, res) => {
