@@ -44,6 +44,11 @@ const uploadMultipleImage = (fields: Field[]) => multerOptions().fields(fields);
 
 const uploadMix = () => multerOptions().any();
 
+// Express' built-in body parsers do not handle multipart/form-data. This
+// parser accepts text-only multipart requests and preserves bracket notation
+// (for example, title[en]) as nested objects.
+const parseMultipartForm = multer().none();
+
 const mediaUpload = multer({
   storage: multer.memoryStorage(),
   limits: {
@@ -143,6 +148,7 @@ const uploadSingleImageFile = (
 };
 
 export {
+  parseMultipartForm,
   uploadMix,
   uploadMultipleImage,
   uploadMediaImage,

@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { parseMultipartForm } from "../../middlewares/uploadImageMiddleware.js";
 import { allowedTo, protectRoutes } from "../users/user.service.js";
 import {
   createProject,
@@ -22,6 +23,7 @@ router
   .post(
     protectRoutes,
     allowedTo("admin"),
+    parseMultipartForm,
     createProjectValidator,
     createProject,
   );
@@ -32,6 +34,7 @@ router
   .put(
     protectRoutes,
     allowedTo("admin"),
+    parseMultipartForm,
     updateProjectValidator,
     updateProject,
   )

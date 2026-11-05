@@ -11,6 +11,7 @@ export const createProjectValidator = [
   check("title.en")
     .notEmpty()
     .withMessage("project.titleEnRequired")
+    .bail()
     .custom((val, { req }) => {
       req.body.slug = slugify(val, { lower: true });
       return true;
