@@ -25,6 +25,10 @@ const projectSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    backgroundImage: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true },
 );
