@@ -175,8 +175,19 @@ async function testUploadAndValidation() {
       if (brandInvalid.status !== 400) throw new Error("Brand invalid logos should return 400");
       console.log("✓ Brand validation works");
 
-      // Test Project: Creates cleanly without images or imageCover
+      // Test Project: Creates cleanly with clientName (no imageCover/images needed)
       const projectValid = await fetch(`${valUrl}/val/project/create`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: { en: "Proj", ar: "مشروع" },
+          description: { en: "Desc", ar: "وصف" },
+          clientName: "Yamuj Client",
+        }),
+      });
+      if (projectValid.status !== 200) throw new Error("Project valid should return 200");
+
+      const projectInvalidMissingClient = await fetch(`${valUrl}/val/project/create`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -184,8 +195,10 @@ async function testUploadAndValidation() {
           description: { en: "Desc", ar: "وصف" },
         }),
       });
-      if (projectValid.status !== 200) throw new Error("Project valid should return 200");
-      console.log("✓ Project validation works (no imageCover/images needed)");
+      if (projectInvalidMissingClient.status !== 400) {
+        throw new Error("Project without clientName should return 400");
+      }
+      console.log("✓ Project validation works (clientName validated)");
 
       // Test Service Valid vs Invalid items image
       const serviceValid = await fetch(`${valUrl}/val/service`, {

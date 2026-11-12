@@ -19,6 +19,12 @@ export const createProjectValidator = [
   check("title.ar").notEmpty().withMessage("project.titleArRequired"),
   check("description.en").notEmpty().withMessage("project.descEnRequired"),
   check("description.ar").notEmpty().withMessage("project.descArRequired"),
+  check("clientName")
+    .notEmpty()
+    .withMessage("project.clientNameRequired")
+    .isString()
+    .withMessage("project.clientNameInvalid")
+    .trim(),
   check("video").optional().isString().withMessage("project.videoInvalid"),
   check("category").optional().isMongoId().withMessage("category.invalidId"),
   check("showInHome")
@@ -41,6 +47,11 @@ export const updateProjectValidator = [
   check("title.ar").optional(),
   check("description.en").optional(),
   check("description.ar").optional(),
+  check("clientName")
+    .optional()
+    .isString()
+    .withMessage("project.clientNameInvalid")
+    .trim(),
   check("video").optional().isString().withMessage("project.videoInvalid"),
   check("category").optional().isMongoId().withMessage("category.invalidId"),
   check("showInHome")

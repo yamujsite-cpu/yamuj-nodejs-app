@@ -29,6 +29,11 @@ const projectSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    clientName: {
+      type: String,
+      required: true,
+      trim: true,
+    },
   },
   { timestamps: true },
 );
