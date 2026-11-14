@@ -29,6 +29,16 @@ export const updateSettingsValidator = [
     .isString()
     .withMessage("settings.whatsappInvalid"),
 
+  check("location")
+    .optional()
+    .isString()
+    .withMessage("settings.locationInvalid"),
+
+  check("gmail")
+    .optional()
+    .isEmail()
+    .withMessage("settings.gmailInvalid"),
+
   check("logo.en")
     .optional({ values: "falsy" })
     .isURL()

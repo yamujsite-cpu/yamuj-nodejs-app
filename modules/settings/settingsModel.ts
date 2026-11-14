@@ -41,6 +41,14 @@ const settingsSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    location: {
+      type: String,
+      default: "",
+    },
+    gmail: {
+      type: String,
+      default: "",
+    },
 
   },
   { timestamps: true },

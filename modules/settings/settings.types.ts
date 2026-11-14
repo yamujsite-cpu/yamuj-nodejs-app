@@ -19,4 +19,6 @@ export interface UpdateSettingsDTO {
   logo?: LocalizedString | string;
   footerLogo?: LocalizedString | string;
   whatsapp?: string;
+  location?: string;
+  gmail?: string;
 }

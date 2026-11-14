@@ -1,0 +1,69 @@
+import { check } from "express-validator";
+import validatorMiddleware from "../../middlewares/validatorMiddleware.js";
+export const updateTestimonialValidator = [
+    check("title.en")
+        .optional()
+        .isString()
+        .withMessage("testimonial.titleEnInvalid")
+        .trim(),
+    check("title.ar")
+        .optional()
+        .isString()
+        .withMessage("testimonial.titleArInvalid")
+        .trim(),
+    check("description.en")
+        .optional()
+        .isString()
+        .withMessage("testimonial.descEnInvalid")
+        .trim(),
+    check("description.ar")
+        .optional()
+        .isString()
+        .withMessage("testimonial.descArInvalid")
+        .trim(),
+    check("sortOrder")
+        .optional()
+        .isNumeric()
+        .withMessage("testimonial.sortOrderInvalid"),
+    check("items")
+        .optional()
+        .customSanitizer((val) => {
+        if (typeof val === "string") {
+            try {
+                return JSON.parse(val);
+            }
+            catch {
+                return val;
+            }
+        }
+        return val;
+    })
+        .isArray()
+        .withMessage("testimonial.itemsInvalid"),
+    check("items.*.name.en")
+        .optional()
+        .isString()
+        .withMessage("testimonial.itemNameEnInvalid")
+        .trim(),
+    check("items.*.name.ar")
+        .optional()
+        .isString()
+        .withMessage("testimonial.itemNameArInvalid")
+        .trim(),
+    check("items.*.message.en")
+        .optional()
+        .isString()
+        .withMessage("testimonial.itemMessageEnInvalid")
+        .trim(),
+    check("items.*.message.ar")
+        .optional()
+        .isString()
+        .withMessage("testimonial.itemMessageArInvalid")
+        .trim(),
+    check("items.*.image")
+        .optional({ values: "falsy" })
+        .isURL()
+        .withMessage("testimonial.itemImageInvalid")
+        .trim(),
+    validatorMiddleware,
+];
