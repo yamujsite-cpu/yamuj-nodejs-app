@@ -157,8 +157,6 @@ export const login = expressAsyncHandler(async (req, res, next) => {
     return next(apiError.create("Email and password are required", 400, FAIL));
   }
 
-  console.log("2332323");
-
   const user = await UserModel.findOne({ email }).select("+password");
 
   if (!user) {
@@ -370,8 +368,6 @@ export const forgetPassword = expressAsyncHandler(async (req, res, next) => {
 
     return next(apiError.create("Internal Server Error", 500, FAIL));
   }
-
-  console.log("7 - Sending response");
 
   res.status(200).json({
     status: "Success",

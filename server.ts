@@ -42,6 +42,7 @@ const allowedOrigins = [
   "https://www.yamuj.com",
   "https://yamuj.com",
   "http://localhost:3301",
+  "https://yamuj-admin.vercel.app"
 ];
 
 app.use(
