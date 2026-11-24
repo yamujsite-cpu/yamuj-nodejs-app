@@ -1,18 +1,48 @@
+
 import mongoose from "mongoose";
 
+type MongooseCache = {
+  conn: typeof mongoose | null;
+  promise: Promise<typeof mongoose> | null;
+};
+
+const globalWithMongoose = globalThis as typeof globalThis & {
+  mongooseCache?: MongooseCache;
+};
+
+const cached =
+  globalWithMongoose.mongooseCache ??
+  (globalWithMongoose.mongooseCache = {
+    conn: null,
+    promise: null,
+  });
+
 const dbConnect = async () => {
-  try {
-    console.log("MONGO URI EXISTS:", !!process.env.MONGO_URI);
+  const mongoUrl = process.env.MONGO_URL;
 
-    await mongoose.connect(process.env.MONGO_URL!, {
-      serverSelectionTimeoutMS: 5000,
-    });
-
-    console.log("MongoDB Connected Successfully");
-  } catch (error) {
-    console.error("MongoDB Connection Error:", error);
-    throw error;
+  if (!mongoUrl) {
+    throw new Error("MONGO_URL is not defined");
   }
+
+  if (cached.conn && mongoose.connection.readyState === 1) {
+    return cached.conn;
+  }
+
+  if (!cached.promise) {
+    cached.promise = mongoose
+      .connect(mongoUrl, {
+        serverSelectionTimeoutMS: 10000,
+      })
+      .then((mongooseInstance) => mongooseInstance)
+      .catch((error) => {
+        cached.promise = null;
+        throw error;
+      });
+  }
+
+  cached.conn = await cached.promise;
+
+  return cached.conn;
 };
 
 export default dbConnect;

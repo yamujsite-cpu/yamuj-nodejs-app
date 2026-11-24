@@ -25,13 +25,36 @@ dotenv.config();
 
 const app = express();
 
-dbConnect();
+app.use("/api", async (req, res, next) => {
+  try {
+    await dbConnect();
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
 
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 
-app.use(cors());
+const allowedOrigins = [
+  "https://www.yamuj.com",
+  "https://yamuj.com",
+  "http://localhost:3301",
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
+  })
+);
 
 const __filename = fileURLToPath(import.meta.url);
 
