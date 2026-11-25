@@ -3,7 +3,9 @@ import { allowedTo, protectRoutes } from "../users/user.service.js";
 import {
   createBlog,
   deleteBlog,
+  getAllBlogsForAdmin,
   getAllBlogs,
+  getSingleBlogForAdmin,
   getSingleBlog,
   updateBlog,
 } from "./blog.service.js";
@@ -24,6 +26,19 @@ router
     allowedTo("admin"),
     createBlogValidator,
     createBlog,
+  );
+
+router
+  .route("/admin")
+  .get(protectRoutes, allowedTo("admin"), getAllBlogsForAdmin);
+
+router
+  .route("/admin/:id")
+  .get(
+    protectRoutes,
+    allowedTo("admin"),
+    getSingleBlogValidator,
+    getSingleBlogForAdmin,
   );
 
 router

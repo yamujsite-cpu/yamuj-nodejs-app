@@ -2,7 +2,9 @@ import {
   createDocument,
   deleteDocument,
   getAllDocuments,
+  getAllPublishedDocuments,
   getSingleDocument,
+  getSinglePublishedDocument,
   updateDocument,
 } from "../../utils/handlersFactory.js";
 import BlogModel from "./blogModel.js";
@@ -12,14 +14,20 @@ import BlogModel from "./blogModel.js";
  * @route GET /api/blog
  * @access Public
  */
-export const getAllBlogs = getAllDocuments(BlogModel);
+export const getAllBlogs = getAllPublishedDocuments(BlogModel);
 
 /**
  * @desc Get Single Blog
  * @route GET /api/blog/:id
  * @access Public
  */
-export const getSingleBlog = getSingleDocument(BlogModel);
+export const getSingleBlog = getSinglePublishedDocument(BlogModel);
+
+/** @desc Get all Blogs, including drafts @route GET /api/blog/admin */
+export const getAllBlogsForAdmin = getAllDocuments(BlogModel);
+
+/** @desc Get any Blog, including drafts @route GET /api/blog/admin/:id */
+export const getSingleBlogForAdmin = getSingleDocument(BlogModel);
 
 /**
  * @desc Create A Blog

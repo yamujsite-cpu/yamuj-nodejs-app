@@ -79,6 +79,72 @@ export const getAllDocuments = (Model: Model<any>, populate?: string | null) =>
     });
   });
 
+/**
+ * Public collection handler. The publishing constraint is deliberately applied
+ * on the server after query parsing so callers cannot override it with query
+ * parameters such as `?isPublished=false`.
+ */
+export const getAllPublishedDocuments = (
+  Model: Model<any>,
+  populate?: string | null,
+) =>
+  expressAsyncHandler(async (req, res) => {
+    const { page = 1, limit = 10 } = req.query;
+    const pageNumber = parseInt(page as string) || 1;
+    const limitNumber = parseInt(limit as string) || 10;
+    const skip = (pageNumber - 1) * limitNumber;
+    const locale = req.headers["locale"] as string;
+    const filters = { ...req.query };
+    const excludedFields = [
+      "page",
+      "sort",
+      "limit",
+      "fields",
+      "keyword",
+      "isPublished",
+    ];
+
+    excludedFields.forEach((field) => delete filters[field]);
+
+    const queryString = JSON.stringify(filters).replace(
+      /\b(gte|gt|lte|lt)\b/g,
+      (match) => `$${match}`,
+    );
+    const mongooseFilters = {
+      ...JSON.parse(queryString),
+      isPublished: true,
+    };
+
+    let query = Model.find(mongooseFilters, { __v: false })
+      .skip(skip)
+      .limit(limitNumber);
+
+    if (populate) {
+      query = query.populate(populate);
+    }
+
+    const documents = await query;
+    const localizedDocuments = documents.map((document) =>
+      localizeDocument(document, locale),
+    );
+    const countDocuments = await Model.countDocuments(mongooseFilters);
+
+    res.status(200).json({
+      status: SUCCESS,
+      message: "Documents retrieved successfully",
+      data: {
+        documents: localizedDocuments,
+        pagination: {
+          currentPage: pageNumber,
+          limit: limitNumber,
+          totalPages: Math.ceil(countDocuments / limitNumber),
+          results: localizedDocuments.length,
+          total: countDocuments,
+        },
+      },
+    });
+  });
+
 export const getSingleDocument = (
   Model: Model<any>,
   populate?: string | null,
@@ -114,6 +180,35 @@ export const getSingleDocument = (
       data: {
         document: localizedDocument,
       },
+    });
+  });
+
+/** Public single-document handler that returns drafts as the standard 404. */
+export const getSinglePublishedDocument = (
+  Model: Model<any>,
+  populate?: string | null,
+) =>
+  expressAsyncHandler(async (req, res, next) => {
+    const { id } = req.params;
+    const locale = req.headers["locale"] as string;
+    let query = Model.findOne({ _id: id, isPublished: true });
+
+    if (populate) {
+      query = query.populate(populate);
+    }
+
+    const document = await query;
+
+    if (!document) {
+      return next(
+        apiError.create(`Document not found with id: ${id}`, 404, ERROR),
+      );
+    }
+
+    res.status(200).json({
+      status: SUCCESS,
+      message: "Document retrieved successfully",
+      data: { document: localizeDocument(document, locale) },
     });
   });
 

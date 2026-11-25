@@ -10,8 +10,8 @@ export const getHome = async () => {
   const [services, brands, blog, projects] = await Promise.all([
     ServiceModel.find().lean(),
     BrandModel.find().lean(),
-    BlogModel.find({ showInHome: true }).lean(),
-    ProjectModel.find({ showInHome: true }).lean(),
+    BlogModel.find({ showInHome: true, isPublished: true }).lean(),
+    ProjectModel.find({ showInHome: true, isPublished: true }).lean(),
   ]);
 
   return {

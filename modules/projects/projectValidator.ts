@@ -31,6 +31,10 @@ export const createProjectValidator = [
     .optional()
     .isBoolean()
     .withMessage("project.showInHomeInvalid"),
+  check("isPublished")
+    .optional()
+    .isBoolean()
+    .withMessage("project.isPublishedInvalid"),
   validatorMiddleware,
 ] as ValidationChain[];
 
@@ -58,6 +62,10 @@ export const updateProjectValidator = [
     .optional()
     .isBoolean()
     .withMessage("project.showInHomeInvalid"),
+  check("isPublished")
+    .optional()
+    .isBoolean()
+    .withMessage("project.isPublishedInvalid"),
   validatorMiddleware,
 ] as ValidationChain[];
 

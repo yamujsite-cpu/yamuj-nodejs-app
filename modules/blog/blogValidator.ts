@@ -28,6 +28,7 @@ export const createBlogValidator = [
     .withMessage("blog.imageInvalid"),
   check("video").optional().isString().withMessage("blog.videoInvalid"),
   check("showInHome").optional().isBoolean().withMessage("blog.showInHomeInvalid"),
+  check("isPublished").optional().isBoolean().withMessage("blog.isPublishedInvalid"),
   validatorMiddleware,
 ] as ValidationChain[];
 
@@ -50,6 +51,7 @@ export const updateBlogValidator = [
     .withMessage("blog.imageInvalid"),
   check("video").optional().isString().withMessage("blog.videoInvalid"),
   check("showInHome").optional().isBoolean().withMessage("blog.showInHomeInvalid"),
+  check("isPublished").optional().isBoolean().withMessage("blog.isPublishedInvalid"),
   validatorMiddleware,
 ] as ValidationChain[];
 

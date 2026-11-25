@@ -12,6 +12,10 @@ const blogSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    isPublished: {
+      type: Boolean,
+      default: false,
+    },
     title: {
       en: { type: String, required: true, trim: true },
       ar: { type: String, required: true, trim: true },

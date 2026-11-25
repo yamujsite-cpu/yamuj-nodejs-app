@@ -2,7 +2,9 @@ import {
   createDocument,
   deleteDocument,
   getAllDocuments,
+  getAllPublishedDocuments,
   getSingleDocument,
+  getSinglePublishedDocument,
   updateDocument,
 } from "../../utils/handlersFactory.js";
 import ProjectModel from "./projectModel.js";
@@ -12,14 +14,20 @@ import ProjectModel from "./projectModel.js";
  * @route GET /api/projects
  * @access Public
  */
-export const getAllProjects = getAllDocuments(ProjectModel);
+export const getAllProjects = getAllPublishedDocuments(ProjectModel);
 
 /**
  * @desc Get Single Project
  * @route GET /api/projects/:id
  * @access Public
  */
-export const getSingleProject = getSingleDocument(ProjectModel);
+export const getSingleProject = getSinglePublishedDocument(ProjectModel);
+
+/** @desc Get all Projects, including drafts @route GET /api/projects/admin */
+export const getAllProjectsForAdmin = getAllDocuments(ProjectModel);
+
+/** @desc Get any Project, including drafts @route GET /api/projects/admin/:id */
+export const getSingleProjectForAdmin = getSingleDocument(ProjectModel);
 
 /**
  * @desc Create A Project

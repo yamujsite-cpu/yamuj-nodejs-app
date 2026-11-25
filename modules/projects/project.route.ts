@@ -4,7 +4,9 @@ import { allowedTo, protectRoutes } from "../users/user.service.js";
 import {
   createProject,
   deleteProject,
+  getAllProjectsForAdmin,
   getAllProjects,
+  getSingleProjectForAdmin,
   getSingleProject,
   updateProject,
 } from "./project.service.js";
@@ -26,6 +28,19 @@ router
     parseMultipartForm,
     createProjectValidator,
     createProject,
+  );
+
+router
+  .route("/admin")
+  .get(protectRoutes, allowedTo("admin"), getAllProjectsForAdmin);
+
+router
+  .route("/admin/:id")
+  .get(
+    protectRoutes,
+    allowedTo("admin"),
+    getSingleProjectValidator,
+    getSingleProjectForAdmin,
   );
 
 router
