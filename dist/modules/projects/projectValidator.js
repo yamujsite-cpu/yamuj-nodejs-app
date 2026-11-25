@@ -1,0 +1,71 @@
+import { check } from "express-validator";
+import slugify from "slugify";
+import validatorMiddleware from "../../middlewares/validatorMiddleware.js";
+export const getSingleProjectValidator = [
+    check("id").isMongoId().withMessage("project.invalidId"),
+    validatorMiddleware,
+];
+export const createProjectValidator = [
+    check("title.en")
+        .notEmpty()
+        .withMessage("project.titleEnRequired")
+        .bail()
+        .custom((val, { req }) => {
+        req.body.slug = slugify(val, { lower: true });
+        return true;
+    }),
+    check("title.ar").notEmpty().withMessage("project.titleArRequired"),
+    check("description.en").notEmpty().withMessage("project.descEnRequired"),
+    check("description.ar").notEmpty().withMessage("project.descArRequired"),
+    check("clientName")
+        .notEmpty()
+        .withMessage("project.clientNameRequired")
+        .isString()
+        .withMessage("project.clientNameInvalid")
+        .trim(),
+    check("video").optional().isString().withMessage("project.videoInvalid"),
+    check("category").optional().isMongoId().withMessage("category.invalidId"),
+    check("showInHome")
+        .optional()
+        .isBoolean()
+        .withMessage("project.showInHomeInvalid"),
+    check("isPublished")
+        .optional()
+        .isBoolean()
+        .withMessage("project.isPublishedInvalid"),
+    validatorMiddleware,
+];
+export const updateProjectValidator = [
+    check("id").isMongoId().withMessage("project.invalidId"),
+    check("title.en")
+        .optional()
+        .custom((val, { req }) => {
+        if (val) {
+            req.body.slug = slugify(val, { lower: true });
+        }
+        return true;
+    }),
+    check("title.ar").optional(),
+    check("description.en").optional(),
+    check("description.ar").optional(),
+    check("clientName")
+        .optional()
+        .isString()
+        .withMessage("project.clientNameInvalid")
+        .trim(),
+    check("video").optional().isString().withMessage("project.videoInvalid"),
+    check("category").optional().isMongoId().withMessage("category.invalidId"),
+    check("showInHome")
+        .optional()
+        .isBoolean()
+        .withMessage("project.showInHomeInvalid"),
+    check("isPublished")
+        .optional()
+        .isBoolean()
+        .withMessage("project.isPublishedInvalid"),
+    validatorMiddleware,
+];
+export const deleteProjectValidator = [
+    check("id").isMongoId().withMessage("project.invalidId"),
+    validatorMiddleware,
+];

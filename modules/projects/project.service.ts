@@ -2,9 +2,8 @@ import {
   createDocument,
   deleteDocument,
   getAllDocuments,
-  getAllPublishedDocuments,
   getSingleDocument,
-  getSinglePublishedDocument,
+  getSingleDocumentWithPublicationQuery,
   updateDocument,
 } from "../../utils/handlersFactory.js";
 import ProjectModel from "./projectModel.js";
@@ -14,14 +13,14 @@ import ProjectModel from "./projectModel.js";
  * @route GET /api/projects
  * @access Public
  */
-export const getAllProjects = getAllPublishedDocuments(ProjectModel);
+export const getAllProjects = getAllDocuments(ProjectModel);
 
 /**
  * @desc Get Single Project
  * @route GET /api/projects/:id
  * @access Public
  */
-export const getSingleProject = getSinglePublishedDocument(ProjectModel);
+export const getSingleProject = getSingleDocumentWithPublicationQuery(ProjectModel);
 
 /** @desc Get all Projects, including drafts @route GET /api/projects/admin */
 export const getAllProjectsForAdmin = getAllDocuments(ProjectModel);

@@ -183,6 +183,44 @@ export const getSingleDocument = (
     });
   });
 
+/**
+ * Retrieves a document by id and optionally applies the publication filter
+ * requested by public website clients via `?isPublished=true`.
+ */
+export const getSingleDocumentWithPublicationQuery = (
+  Model: Model<any>,
+  populate?: string | null,
+) =>
+  expressAsyncHandler(async (req, res, next) => {
+    const { id } = req.params;
+    const locale = req.headers["locale"] as string;
+    const filters: Record<string, unknown> = { _id: id };
+
+    if (req.query.isPublished === "true") {
+      filters.isPublished = true;
+    }
+
+    let query = Model.findOne(filters);
+
+    if (populate) {
+      query = query.populate(populate);
+    }
+
+    const document = await query;
+
+    if (!document) {
+      return next(
+        apiError.create(`Document not found with id: ${id}`, 404, ERROR),
+      );
+    }
+
+    res.status(200).json({
+      status: SUCCESS,
+      message: "Document retrieved successfully",
+      data: { document: localizeDocument(document, locale) },
+    });
+  });
+
 /** Public single-document handler that returns drafts as the standard 404. */
 export const getSinglePublishedDocument = (
   Model: Model<any>,
